@@ -194,32 +194,30 @@ export default function HomePage() {
         </div>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {serviceCards.map((service, i) => (
+          {serviceCards.map((service) => (
             <Link
               key={service.href}
               href={service.href}
-              className={`group relative flex min-h-[380px] flex-col justify-end overflow-hidden ${
-                i === 0 ? "sm:col-span-2 sm:min-h-[420px] lg:col-span-1 lg:min-h-[380px]" : ""
-              }`}
+              className="group relative flex aspect-[3/4] flex-col justify-end overflow-hidden"
             >
               <Image
                 src={service.image}
                 alt=""
                 fill
                 sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                className="object-cover grayscale contrast-125 transition-transform duration-300 group-hover:scale-105"
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-milpaq-deep-olive/70 transition-colors group-hover:bg-milpaq-deep-olive/60" />
+              <div className="absolute inset-0 bg-milpaq-deep-olive/15 transition-colors group-hover:bg-milpaq-deep-olive/5" />
 
-              <div className="relative p-7">
+              <div className="relative p-6">
                 <p className="font-display text-xs font-semibold uppercase tracking-[0.15em] text-milpaq-tan">
                   {service.eyebrow}
                 </p>
-                <h3 className="font-display mt-2 text-xl font-semibold uppercase leading-tight tracking-wide text-white">
+                <h3 className="font-display mt-2 text-lg font-semibold uppercase leading-tight tracking-wide text-white">
                   {service.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-white/70">{service.description}</p>
-                <span className="mt-5 inline-block border border-white/40 px-5 py-2.5 font-display text-xs font-semibold uppercase tracking-wide text-white transition-colors group-hover:border-milpaq-tan group-hover:text-milpaq-tan">
+                <span className="mt-5 inline-block border border-white/40 px-4 py-2 font-display text-xs font-semibold uppercase tracking-wide text-white transition-colors group-hover:border-milpaq-tan group-hover:text-milpaq-tan">
                   {service.cta}
                 </span>
               </div>
