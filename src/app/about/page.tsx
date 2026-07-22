@@ -51,10 +51,10 @@ export default function AboutPage() {
         <div className="mt-6 flex flex-wrap gap-3">
           {credentials.map((credential) => (
             <span
-              key={credential}
+              key={credential.label}
               className="rounded-full bg-milpaq-tan-light px-4 py-2 text-sm font-medium text-milpaq-dark"
             >
-              {credential}
+              {credential.label}
             </span>
           ))}
         </div>

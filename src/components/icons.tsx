@@ -67,3 +67,44 @@ export function IconHandshake({ className }: IconProps) {
     </svg>
   );
 }
+
+export function IconShieldStar({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className ?? base} strokeWidth={2} {...cap}>
+      <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" />
+      <path d="M12 8.2l1.1 2.2 2.4.3-1.75 1.7.4 2.4L12 13.6l-2.15 1.2.4-2.4-1.75-1.7 2.4-.3z" />
+    </svg>
+  );
+}
+
+export function IconGlobeCheck({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className ?? base} strokeWidth={2} {...cap}>
+      <circle cx="10.5" cy="12" r="7.5" />
+      <path d="M3 12h15M10.5 4.5c2 2 3 4.7 3 7.5s-1 5.5-3 7.5c-2-2-3-4.7-3-7.5s1-5.5 3-7.5z" />
+      <path d="M15.5 15l2 2 3.5-4" />
+    </svg>
+  );
+}
+
+export function IconCertificate({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className ?? base} strokeWidth={2} {...cap}>
+      <rect x="3" y="3" width="14" height="18" rx="1" />
+      <path d="M6.5 7.5h7M6.5 10.5h7M6.5 13.5h4" />
+      <circle cx="17.5" cy="16.5" r="3.5" />
+      <path d="M16 19.5l-.7 3 2.2-1.3 2.2 1.3-.7-3" />
+    </svg>
+  );
+}
+
+export function IconBank({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className ?? base} strokeWidth={2} {...cap}>
+      <path d="M3 9.5L12 4l9 5.5" />
+      <path d="M4.5 9.5v9M9 9.5v9M15 9.5v9M19.5 9.5v9" />
+      <path d="M3 21h18" />
+      <path d="M3 9.5h18" />
+    </svg>
+  );
+}

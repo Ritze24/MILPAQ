@@ -2,10 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { company, primaryNav, servicesNav } from "@/lib/constants";
 
+const legalLinks = [
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms of Service", href: "/terms-of-service" },
+  { label: "Accessibility", href: "/accessibility" },
+];
+
 export function SiteFooter() {
   return (
     <footer className="bg-milpaq-deep-olive text-white/70">
       <div className="h-0.5 bg-milpaq-tan" />
+
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
@@ -67,12 +74,26 @@ export function SiteFooter() {
             </ul>
           </div>
         </div>
+      </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-8 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            &copy; {new Date().getFullYear()} {company.legalName}. All rights reserved.
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-6 text-xs text-white/40 sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p>
+              &copy; {new Date().getFullYear()} {company.legalName}. All rights reserved.
+            </p>
+            <div className="flex items-center gap-6">
+              {legalLinks.map((item) => (
+                <Link key={item.href} href={item.href} className="hover:text-white">
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <p className="uppercase tracking-widest text-white/30">
+            SDVOSB &middot; ISO 9001 &middot; JCP Certified &middot; SAM Registered &middot; CAGE{" "}
+            {company.cageCode}
           </p>
-          <p className="uppercase tracking-widest">SDVOSB &middot; ISO 9001 &middot; JCP Certified</p>
         </div>
       </div>
     </footer>

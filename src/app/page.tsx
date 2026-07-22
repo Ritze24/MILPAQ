@@ -1,7 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import { HomeHero } from "@/components/home-hero";
 import { CtaBand } from "@/components/cta-band";
-import { credentials, servicesNav } from "@/lib/constants";
+import { credentials } from "@/lib/constants";
 import {
   IconTarget,
   IconBriefcase,
@@ -10,7 +11,13 @@ import {
   IconFactory,
   IconGlobe,
   IconHandshake,
+  IconShieldStar,
+  IconGlobeCheck,
+  IconCertificate,
+  IconBank,
 } from "@/components/icons";
+
+const credentialIcons = [IconShieldStar, IconGlobeCheck, IconCertificate, IconBank];
 
 const serviceCategories = [
   {
@@ -57,6 +64,49 @@ const whoWeHelp = [
   },
 ];
 
+const serviceCards = [
+  {
+    image: "/brand/services/svc-military-packaging.jpg",
+    eyebrow: "MIL-STD-2073 / 129",
+    title: "Military Packaging & Contract Execution",
+    description: "End-to-end packaging, labeling, and export prep — from award through delivery.",
+    href: "/services/military-packaging",
+    cta: "Explore Packaging",
+  },
+  {
+    image: "/brand/services/svc-dcma-inspection.jpg",
+    eyebrow: "Origin Inspection",
+    title: "DCMA Origin Inspection Facilitation",
+    description: "Coordinating source inspection so MILPAQ is listed and ready before DCMA arrives.",
+    href: "/services/dcma-origin-inspection",
+    cta: "Inspection Support",
+  },
+  {
+    image: "/brand/services/svc-government-readiness.jpg",
+    eyebrow: "Readiness",
+    title: "Government Readiness",
+    description: "Assessing and building the operational infrastructure to sell into the federal market.",
+    href: "/services/government-readiness",
+    cta: "Readiness Assessment",
+  },
+  {
+    image: "/brand/services/svc-strategic-growth.jpg",
+    eyebrow: "90-Day Engagement",
+    title: "Strategic Growth Retainer",
+    description: "Outsourced business development for contractors scaling government revenue.",
+    href: "/services/strategic-growth-retainer",
+    cta: "Growth Retainer",
+  },
+  {
+    image: "/brand/services/svc-government-infrastructure.jpg",
+    eyebrow: "Systems & Compliance",
+    title: "Government Infrastructure Services",
+    description: "PIEE, VSM, WAWF, and eJCP support so contract administration doesn't stall delivery.",
+    href: "/services/government-infrastructure",
+    cta: "Infrastructure Support",
+  },
+];
+
 export default function HomePage() {
   return (
     <>
@@ -69,17 +119,21 @@ export default function HomePage() {
       />
 
       <section className="border-b border-milpaq-border bg-white">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-12 gap-y-4 px-4 py-7 sm:px-6 lg:px-8">
-          {credentials.map((credential, i) => (
-            <span key={credential} className="flex items-center gap-x-12">
-              <span className="font-display text-xs font-semibold uppercase tracking-[0.15em] text-milpaq-charcoal/70">
-                {credential}
-              </span>
-              {i < credentials.length - 1 && (
-                <span className="hidden h-4 w-px bg-milpaq-border sm:inline-block" />
-              )}
-            </span>
-          ))}
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-8 px-4 py-10 sm:px-6 md:grid-cols-4 lg:px-8">
+          {credentials.map(({ label, caption }, i) => {
+            const Icon = credentialIcons[i];
+            return (
+              <div key={label} className="flex items-start gap-3">
+                <Icon className="h-8 w-8 shrink-0 stroke-current fill-none text-milpaq-olive" />
+                <div>
+                  <p className="font-display text-sm font-semibold uppercase tracking-wide text-milpaq-charcoal">
+                    {label}
+                  </p>
+                  <p className="mt-0.5 text-xs leading-snug text-milpaq-charcoal/60">{caption}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 
@@ -138,24 +192,37 @@ export default function HomePage() {
             Our Services
           </h2>
         </div>
-        <div className="mt-12 divide-y divide-milpaq-border border-y border-milpaq-border">
-          {servicesNav.map((service, i) => (
+
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {serviceCards.map((service, i) => (
             <Link
               key={service.href}
               href={service.href}
-              className="group flex items-center justify-between gap-6 py-6 transition-colors hover:bg-milpaq-cream"
+              className={`group relative flex min-h-[380px] flex-col justify-end overflow-hidden ${
+                i === 0 ? "sm:col-span-2 sm:min-h-[420px] lg:col-span-1 lg:min-h-[380px]" : ""
+              }`}
             >
-              <span className="flex items-center gap-6">
-                <span className="font-display text-sm text-milpaq-tan-hover">
-                  {String(i + 1).padStart(2, "0")}
+              <Image
+                src={service.image}
+                alt=""
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                className="object-cover grayscale contrast-125 transition-transform duration-300 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-milpaq-deep-olive/70 transition-colors group-hover:bg-milpaq-deep-olive/60" />
+
+              <div className="relative p-7">
+                <p className="font-display text-xs font-semibold uppercase tracking-[0.15em] text-milpaq-tan">
+                  {service.eyebrow}
+                </p>
+                <h3 className="font-display mt-2 text-xl font-semibold uppercase leading-tight tracking-wide text-white">
+                  {service.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-white/70">{service.description}</p>
+                <span className="mt-5 inline-block border border-white/40 px-5 py-2.5 font-display text-xs font-semibold uppercase tracking-wide text-white transition-colors group-hover:border-milpaq-tan group-hover:text-milpaq-tan">
+                  {service.cta}
                 </span>
-                <span className="font-display text-lg font-medium uppercase tracking-wide text-milpaq-charcoal sm:text-xl">
-                  {service.label}
-                </span>
-              </span>
-              <span className="shrink-0 text-xl text-milpaq-olive transition-transform group-hover:translate-x-1">
-                &rarr;
-              </span>
+              </div>
             </Link>
           ))}
         </div>

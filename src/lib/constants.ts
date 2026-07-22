@@ -16,7 +16,12 @@ export const company = {
   domain: "milpaq.com",
 };
 
-export const credentials = ["SDVOSB", "ISO 9001", "JCP Certified", `CAGE ${company.cageCode}`];
+export const credentials = [
+  { label: "SDVOSB", caption: "Service-Disabled Veteran-Owned Small Business" },
+  { label: "ISO 9001", caption: "Quality Management Standard Compliance" },
+  { label: "JCP Certified", caption: "Joint Certification Program Access" },
+  { label: `CAGE ${company.cageCode}`, caption: "Commercial and Government Entity ID" },
+];
 
 export type NavLink = { label: string; href: string };
 
