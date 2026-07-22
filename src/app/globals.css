@@ -1,24 +1,39 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1c1c1a;
-  --milpaq-olive: #4b5320;
-  --milpaq-olive-dark: #33390f;
-  --milpaq-tan: #c2b280;
-  --milpaq-tan-light: #ede7d3;
-  --milpaq-dark: #2f3b26;
+  --background: #f5f3ed;
+  --foreground: #23261a;
+
+  /* MILPAQ brand palette, sampled from brand collateral (logo, letterhead, brochure) */
+  --milpaq-cream: #f5f3ed;
+  --milpaq-cream-soft: #ece6d4;
+  --milpaq-olive: #5c6244;
+  --milpaq-olive-dark: #3f4730;
+  --milpaq-olive-darker: #23261a;
+  --milpaq-sage: #919a6e;
+  --milpaq-tan: #bcb386;
+  --milpaq-tan-light: #ece6d4;
+  --milpaq-gold: #c9ac53;
+  --milpaq-dark: #23261a;
+
+  /* legacy aliases kept so existing components using -olive/-tan still resolve */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-milpaq-cream: var(--milpaq-cream);
+  --color-milpaq-cream-soft: var(--milpaq-cream-soft);
   --color-milpaq-olive: var(--milpaq-olive);
   --color-milpaq-olive-dark: var(--milpaq-olive-dark);
+  --color-milpaq-olive-darker: var(--milpaq-olive-darker);
+  --color-milpaq-sage: var(--milpaq-sage);
   --color-milpaq-tan: var(--milpaq-tan);
   --color-milpaq-tan-light: var(--milpaq-tan-light);
+  --color-milpaq-gold: var(--milpaq-gold);
   --color-milpaq-dark: var(--milpaq-dark);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
   --font-mono: var(--font-geist-mono);
 }
 
