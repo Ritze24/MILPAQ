@@ -1,40 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f5f3ed;
-  --foreground: #23261a;
+  --background: #f5f3ec;
+  --foreground: #1a1a1a;
 
-  /* MILPAQ brand palette, sampled from brand collateral (logo, letterhead, brochure) */
-  --milpaq-cream: #f5f3ed;
-  --milpaq-cream-soft: #ece6d4;
-  --milpaq-olive: #5c6244;
-  --milpaq-olive-dark: #3f4730;
-  --milpaq-olive-darker: #23261a;
-  --milpaq-sage: #919a6e;
-  --milpaq-tan: #bcb386;
-  --milpaq-tan-light: #ece6d4;
-  --milpaq-gold: #c9ac53;
-  --milpaq-dark: #23261a;
-
-  /* legacy aliases kept so existing components using -olive/-tan still resolve */
+  /* MILPAQ Brand Guidelines v1.0 — exact palette, do not deviate */
+  --milpaq-cream: #f5f3ec;
+  --milpaq-deep-olive: #2b3810;
+  --milpaq-olive: #4a5e1c;
+  --milpaq-sage: #7a8c3c;
+  --milpaq-tan: #c8b86a;
+  --milpaq-tan-hover: #b0a055;
+  --milpaq-charcoal: #1a1a1a;
+  --milpaq-border: #deddd5;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-milpaq-cream: var(--milpaq-cream);
-  --color-milpaq-cream-soft: var(--milpaq-cream-soft);
+  --color-milpaq-deep-olive: var(--milpaq-deep-olive);
   --color-milpaq-olive: var(--milpaq-olive);
-  --color-milpaq-olive-dark: var(--milpaq-olive-dark);
-  --color-milpaq-olive-darker: var(--milpaq-olive-darker);
   --color-milpaq-sage: var(--milpaq-sage);
   --color-milpaq-tan: var(--milpaq-tan);
-  --color-milpaq-tan-light: var(--milpaq-tan-light);
-  --color-milpaq-gold: var(--milpaq-gold);
-  --color-milpaq-dark: var(--milpaq-dark);
+  --color-milpaq-tan-hover: var(--milpaq-tan-hover);
+  --color-milpaq-charcoal: var(--milpaq-charcoal);
+  --color-milpaq-border: var(--milpaq-border);
   --font-sans: var(--font-body);
   --font-display: var(--font-display);
-  --font-mono: var(--font-geist-mono);
 }
 
 body {
