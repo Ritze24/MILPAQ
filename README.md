@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MILPAQ
 
-## Getting Started
+Website and platform build for MILPAQ Solutions — Next.js frontend replacing the client's existing Wix site (milpaq.com).
 
-First, run the development server:
+## Tech stack
+
+- [Next.js](https://nextjs.org) 16 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS 4
+
+## Prerequisites
+
+- Node.js 20+
+- npm
+
+## Getting started
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the dev server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site. Pages hot-reload as you edit files under `src/app`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the local dev server |
+| `npm run build` | Production build |
+| `npm run start` | Serve the production build |
+| `npm run lint` | Run ESLint |
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  app/            # routes (App Router) — pages, layout, sitemap, robots
+  components/     # shared UI components (header, footer, hero, RFQ form, etc.)
+  lib/            # constants, SEO/blog data, WordPress integration helpers
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Key routes: `/about`, `/services` (+ subpages for military packaging, DCMA origin inspection, government readiness, government infrastructure, strategic growth retainer), `/blog`, `/contact`, `/oem-partnership`, `/resource-store`, `/workshops`, plus dynamic SEO landing pages under `/[slug]`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Notes
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- This project pins a newer Next.js version than may be reflected in general documentation/training data — see `AGENTS.md` for details, and check `node_modules/next/dist/docs/` for the installed version's docs before relying on prior Next.js knowledge.
+- Blog content is sourced from a headless WordPress instance (see `src/lib/wordpress.ts`).
