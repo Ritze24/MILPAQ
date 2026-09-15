@@ -151,7 +151,7 @@ export default function AboutPage() {
             Credentials
           </h2>
         </div>
-        <div className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
           {credentials.map(({ label, image }) => (
             <div key={label} className="relative h-16 w-full sm:h-20">
               <Image
