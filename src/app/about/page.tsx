@@ -87,7 +87,7 @@ export default function AboutPage() {
               market access, packaging compliance, and contract execution — becoming the bridge
               manufacturers need between what they build and what the government buys.
             </p>
-            <p className="mt-4 font-medium text-milpaq-dark">Richard Jones — Founder &amp; President</p>
+            <p className="mt-4 font-medium text-milpaq-dark">Richard Jones — Founder</p>
           </div>
         </div>
       </section>
