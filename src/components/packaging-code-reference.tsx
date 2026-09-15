@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const codeFields = [
   {
     term: "Method of Preservation",
@@ -69,7 +71,7 @@ const codeFields = [
 export function PackagingCodeReference() {
   return (
     <div className="rounded-lg border border-milpaq-tan bg-milpaq-tan-light p-6">
-      <h3 className="text-lg font-semibold text-milpaq-dark">MIL-STD-2073 Packaging Code Reference</h3>
+      <h3 className="font-display text-lg font-semibold text-milpaq-dark">MIL-STD-2073 Packaging Code Reference</h3>
       <p className="mt-2 text-sm text-milpaq-dark/70">
         A simplified reference for the packaging code fields found on most DoD contracts and
         solicitations. If your contract references a packaging code you don&apos;t recognize,
@@ -85,6 +87,12 @@ export function PackagingCodeReference() {
           </details>
         ))}
       </div>
+      <Link
+        href="/services/military-packaging/code-lookup"
+        className="mt-4 flex w-full items-center justify-center rounded-md bg-milpaq-olive px-4 py-2.5 text-sm font-semibold text-white hover:bg-milpaq-olive-dark"
+      >
+        Open Full Code Lookup Tool
+      </Link>
     </div>
   );
 }

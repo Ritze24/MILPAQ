@@ -108,3 +108,58 @@ export function IconBank({ className }: IconProps) {
     </svg>
   );
 }
+
+export function IconPhone({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className ?? base} strokeWidth={2} {...cap}>
+      <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 2-2z" />
+    </svg>
+  );
+}
+
+export function IconMapPin({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className ?? base} strokeWidth={2} {...cap}>
+      <path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z" />
+      <circle cx="12" cy="9" r="2.5" />
+    </svg>
+  );
+}
+
+export function IconMail({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className ?? base} strokeWidth={2} {...cap}>
+      <rect x="3" y="5" width="18" height="14" rx="1.5" />
+      <path d="M3.5 6.5l8.5 6 8.5-6" />
+    </svg>
+  );
+}
+
+export function IconMessage({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className ?? base} strokeWidth={2} {...cap}>
+      <path d="M4 5h16v11H8l-4 4V5z" />
+      <path d="M8 9h8M8 12h5" />
+    </svg>
+  );
+}
+
+export function IconDownload({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className ?? base} strokeWidth={2} {...cap}>
+      <path d="M12 3v12" />
+      <path d="M7.5 10.5L12 15l4.5-4.5" />
+      <path d="M4 19h16" />
+    </svg>
+  );
+}
+
+export function IconDocument({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className ?? base} strokeWidth={2} {...cap}>
+      <path d="M6 3h9l4 4v14H6V3z" />
+      <path d="M15 3v4h4" />
+      <path d="M9 13h6M9 16.5h6" />
+    </svg>
+  );
+}

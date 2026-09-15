@@ -4,17 +4,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { primaryNav, servicesNav } from "@/lib/constants";
+import { ShinyLink } from "@/components/ui/shiny-link";
 
 export function SiteHeader() {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-milpaq-deep-olive">
+    <header className="sticky top-0 z-50 border-b border-milpaq-border bg-white">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <Link href="/" className="flex shrink-0 items-center">
           <Image
-            src="/brand/logo-white.png"
+            src="/brand/logo-color.png"
             alt="MILPAQ Solutions"
             width={1920}
             height={542}
@@ -24,13 +25,6 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-7 whitespace-nowrap xl:flex">
-          <Link
-            href="/"
-            className="font-display text-sm font-medium uppercase tracking-wide text-white/85 transition-colors hover:text-white"
-          >
-            Home
-          </Link>
-
           <div
             className="relative"
             onMouseEnter={() => setServicesOpen(true)}
@@ -38,7 +32,7 @@ export function SiteHeader() {
           >
             <button
               type="button"
-              className="flex items-center gap-1.5 font-display text-sm font-medium uppercase tracking-wide text-white/85 transition-colors hover:text-white"
+              className="flex items-center gap-1.5 font-display text-sm font-medium uppercase tracking-wide text-milpaq-charcoal transition-colors hover:text-milpaq-olive"
               onClick={() => setServicesOpen((v) => !v)}
               aria-expanded={servicesOpen}
             >
@@ -49,7 +43,7 @@ export function SiteHeader() {
             </button>
             {servicesOpen && (
               <div className="absolute left-1/2 top-full w-80 -translate-x-1/2 pt-3">
-                <div className="border border-milpaq-border bg-white">
+                <div className="border border-milpaq-border bg-white shadow-lg">
                   <div className="h-0.5 bg-milpaq-tan" />
                   {servicesNav.map((item) => (
                     <Link
@@ -65,11 +59,11 @@ export function SiteHeader() {
             )}
           </div>
 
-          {primaryNav.slice(1).map((item) => (
+          {primaryNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="font-display text-sm font-medium uppercase tracking-wide text-white/85 transition-colors hover:text-white"
+              className="font-display text-sm font-medium uppercase tracking-wide text-milpaq-charcoal transition-colors hover:text-milpaq-olive"
             >
               {item.label}
             </Link>
@@ -77,12 +71,13 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link
+          <ShinyLink
             href="/services/military-packaging#quote"
-            className="hidden rounded bg-milpaq-tan px-6 py-2.5 font-display text-sm font-semibold uppercase tracking-wide text-milpaq-deep-olive transition-colors hover:bg-milpaq-tan-hover xl:inline-block"
+            shineColor="#ffffff"
+            className="hidden items-center rounded bg-milpaq-tan px-6 py-2.5 font-display text-sm font-semibold uppercase tracking-wide text-milpaq-deep-olive transition-colors hover:bg-milpaq-tan-hover xl:inline-flex"
           >
             Request Packaging Quote
-          </Link>
+          </ShinyLink>
 
           <button
             type="button"
@@ -91,41 +86,39 @@ export function SiteHeader() {
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
           >
-            <span className="block h-0.5 w-6 bg-white mb-1.5" />
-            <span className="block h-0.5 w-6 bg-white mb-1.5" />
-            <span className="block h-0.5 w-6 bg-white" />
+            <span className="block h-0.5 w-6 bg-milpaq-charcoal mb-1.5" />
+            <span className="block h-0.5 w-6 bg-milpaq-charcoal mb-1.5" />
+            <span className="block h-0.5 w-6 bg-milpaq-charcoal" />
           </button>
         </div>
       </div>
 
       {mobileOpen && (
-        <nav className="flex flex-col gap-1 border-t border-white/15 px-4 py-3 xl:hidden">
-          <Link href="/" className="py-2 font-display text-sm font-medium uppercase tracking-wide text-white">
-            Home
-          </Link>
-          <span className="pt-2 font-display text-xs font-semibold uppercase tracking-wide text-milpaq-tan">
+        <nav className="flex flex-col gap-1 border-t border-milpaq-border px-4 py-3 xl:hidden">
+          <span className="font-display text-xs font-semibold uppercase tracking-wide text-milpaq-sage">
             Services
           </span>
           {servicesNav.map((item) => (
-            <Link key={item.href} href={item.href} className="py-2 pl-3 text-sm text-white/80">
+            <Link key={item.href} href={item.href} className="py-2 pl-3 text-sm text-milpaq-dark/80">
               {item.label}
             </Link>
           ))}
-          {primaryNav.slice(1).map((item) => (
+          {primaryNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="py-2 font-display text-sm font-medium uppercase tracking-wide text-white"
+              className="py-2 font-display text-sm font-medium uppercase tracking-wide text-milpaq-charcoal"
             >
               {item.label}
             </Link>
           ))}
-          <Link
+          <ShinyLink
             href="/services/military-packaging#quote"
-            className="mt-2 rounded bg-milpaq-tan px-6 py-2.5 text-center font-display text-sm font-semibold uppercase tracking-wide text-milpaq-deep-olive"
+            shineColor="#ffffff"
+            className="mt-2 flex items-center justify-center rounded bg-milpaq-tan px-6 py-2.5 text-center font-display text-sm font-semibold uppercase tracking-wide text-milpaq-deep-olive"
           >
             Request Packaging Quote
-          </Link>
+          </ShinyLink>
         </nav>
       )}
     </header>

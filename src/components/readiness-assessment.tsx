@@ -56,7 +56,7 @@ export function ReadinessAssessment() {
         <p className="text-sm font-semibold uppercase tracking-wide text-milpaq-olive">
           Your Result
         </p>
-        <h3 className="mt-2 text-2xl font-bold text-milpaq-dark">{result}</h3>
+        <h3 className="font-display mt-2 text-2xl font-bold text-milpaq-dark">{result}</h3>
         <p className="mt-3 text-milpaq-dark/80">{resultCopy[result]}</p>
         <p className="mt-3 text-sm text-milpaq-dark/70">Primary goal: {goal}</p>
         <div className="mt-6 flex flex-wrap gap-4">

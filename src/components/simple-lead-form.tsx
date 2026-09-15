@@ -28,7 +28,7 @@ export function SimpleLeadForm({
   if (submitted) {
     return (
       <div className="rounded-lg border border-milpaq-olive bg-milpaq-tan-light p-8">
-        <h3 className="text-xl font-semibold text-milpaq-dark">{confirmationTitle}</h3>
+        <h3 className="font-display text-xl font-semibold text-milpaq-dark">{confirmationTitle}</h3>
         <p className="mt-2 text-sm text-milpaq-dark/80">{confirmationMessage}</p>
       </div>
     );

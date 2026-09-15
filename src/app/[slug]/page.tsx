@@ -12,6 +12,13 @@ function getPage(slug: string) {
   return seoPages.find((page) => page.slug === slug);
 }
 
+const heroImageByRelatedHref: Record<string, string> = {
+  "/services/military-packaging": "/brand/services/svc-military-packaging.jpg",
+  "/services/dcma-origin-inspection": "/brand/services/svc-dcma-inspection.jpg",
+  "/workshops": "/brand/home-sections/success-readiness-training.jpg",
+  "/oem-partnership": "/brand/hero-manufacturing.jpg",
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -34,7 +41,11 @@ export default async function SeoLandingPage({
 
   return (
     <>
-      <PageHero title={page.title} description={page.intro} />
+      <PageHero
+        title={page.title}
+        description={page.intro}
+        image={heroImageByRelatedHref[page.relatedHref]}
+      />
       <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <Link
           href={page.relatedHref}

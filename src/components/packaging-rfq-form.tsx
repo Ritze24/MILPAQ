@@ -18,7 +18,7 @@ export function PackagingRfqForm() {
   if (submitted) {
     return (
       <div id="quote" className="rounded-lg border border-milpaq-olive bg-milpaq-tan-light p-8">
-        <h3 className="text-xl font-semibold text-milpaq-dark">Request received</h3>
+        <h3 className="font-display text-xl font-semibold text-milpaq-dark">Request received</h3>
         <p className="mt-2 text-sm text-milpaq-dark/80">
           Thank you for your submission. MILPAQ will review your contract/solicitation and
           packaging requirements and follow up with a quote.
@@ -34,7 +34,7 @@ export function PackagingRfqForm() {
       className="space-y-8 rounded-lg border border-milpaq-tan bg-white p-8"
     >
       <div>
-        <h3 className="text-lg font-semibold text-milpaq-dark">1. Company Information</h3>
+        <h3 className="font-display text-lg font-semibold text-milpaq-dark">1. Company Information</h3>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           <Field label="Company Name" name="companyName" required />
           <Field label="Contact Name" name="contactName" required />
@@ -44,7 +44,7 @@ export function PackagingRfqForm() {
       </div>
 
       <div>
-        <h3 className="text-lg font-semibold text-milpaq-dark">2. Contract Information</h3>
+        <h3 className="font-display text-lg font-semibold text-milpaq-dark">2. Contract Information</h3>
         <div className="mt-4">
           <label className="block text-sm font-medium text-milpaq-dark">
             Upload Contract or Solicitation
@@ -59,7 +59,7 @@ export function PackagingRfqForm() {
       </div>
 
       <div>
-        <h3 className="text-lg font-semibold text-milpaq-dark">3. Packaging Information</h3>
+        <h3 className="font-display text-lg font-semibold text-milpaq-dark">3. Packaging Information</h3>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           <Field label="Number of Units" name="units" type="number" required />
           <Field label="Unit Dimensions (L x W x H)" name="dimensions" required />
@@ -68,7 +68,7 @@ export function PackagingRfqForm() {
       </div>
 
       <div>
-        <h3 className="text-lg font-semibold text-milpaq-dark">4. Inspection Requirements</h3>
+        <h3 className="font-display text-lg font-semibold text-milpaq-dark">4. Inspection Requirements</h3>
         <div className="mt-4 flex flex-wrap gap-6">
           <label className="flex items-center gap-2 text-sm text-milpaq-dark">
             <input
@@ -94,7 +94,7 @@ export function PackagingRfqForm() {
       </div>
 
       <div>
-        <h3 className="text-lg font-semibold text-milpaq-dark">5. Additional Notes</h3>
+        <h3 className="font-display text-lg font-semibold text-milpaq-dark">5. Additional Notes</h3>
         <textarea
           name="notes"
           rows={4}
