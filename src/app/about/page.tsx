@@ -19,8 +19,6 @@ export const metadata: Metadata = {
     "MILPAQ Solutions is the government contracting and compliance division of 305 Aero Supplies LLC, helping manufacturers execute on U.S. government contracts.",
 };
 
-const coreValues = ["Reliability", "Integrity", "Execution", "Professionalism", "Customer Service"];
-
 const differentiators = [
   {
     icon: IconHandshake,
@@ -141,27 +139,6 @@ export default function AboutPage() {
               <p className="mt-2 text-sm leading-relaxed text-milpaq-dark/70">{description}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      <section className="bg-milpaq-deep-olive py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-tan">
-            Core Values
-          </p>
-          <h2 className="font-display mt-3 text-2xl font-semibold uppercase tracking-tight text-white sm:text-3xl">
-            How We Operate
-          </h2>
-          <div className="mt-8 flex flex-wrap gap-3">
-            {coreValues.map((value) => (
-              <span
-                key={value}
-                className="rounded-full border border-milpaq-tan/60 px-5 py-2.5 text-sm font-medium text-white"
-              >
-                {value}
-              </span>
-            ))}
-          </div>
         </div>
       </section>
 
