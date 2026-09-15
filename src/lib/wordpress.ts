@@ -73,41 +73,51 @@ export async function getPosts({
 }: { page?: number; perPage?: number; categorySlug?: string } = {}): Promise<PostsPage> {
   if (!apiUrl) return { posts: [], totalPages: 0 };
 
-  const params = new URLSearchParams({
-    _embed: "1",
-    page: String(page),
-    per_page: String(perPage),
-  });
+  try {
+    const params = new URLSearchParams({
+      _embed: "1",
+      page: String(page),
+      per_page: String(perPage),
+    });
 
-  if (categorySlug) {
-    const categoryRes = await fetch(
-      `${apiUrl}/wp-json/wp/v2/categories?slug=${categorySlug}`,
-      { next: { revalidate: 3600 } }
-    );
-    if (categoryRes.ok) {
-      const matches = (await categoryRes.json()) as { id: number }[];
-      if (matches[0]) params.set("categories", String(matches[0].id));
+    if (categorySlug) {
+      const categoryRes = await fetch(
+        `${apiUrl}/wp-json/wp/v2/categories?slug=${categorySlug}`,
+        { next: { revalidate: 3600 } }
+      );
+      if (categoryRes.ok) {
+        const matches = (await categoryRes.json()) as { id: number }[];
+        if (matches[0]) params.set("categories", String(matches[0].id));
+      }
     }
+
+    const res = await fetch(`${apiUrl}/wp-json/wp/v2/posts?${params}`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return { posts: [], totalPages: 0 };
+
+    const posts = (await res.json()) as RawPost[];
+    const totalPages = Number(res.headers.get("X-WP-TotalPages") ?? "1");
+    return { posts: posts.map(normalize), totalPages };
+  } catch {
+    // WordPress unreachable (DNS not yet propagated, host down, etc.) — degrade
+    // to the "coming soon" state instead of failing the page/build.
+    return { posts: [], totalPages: 0 };
   }
-
-  const res = await fetch(`${apiUrl}/wp-json/wp/v2/posts?${params}`, {
-    next: { revalidate: 3600 },
-  });
-  if (!res.ok) return { posts: [], totalPages: 0 };
-
-  const posts = (await res.json()) as RawPost[];
-  const totalPages = Number(res.headers.get("X-WP-TotalPages") ?? "1");
-  return { posts: posts.map(normalize), totalPages };
 }
 
 export async function getPostBySlug(slug: string): Promise<WordPressPost | null> {
   if (!apiUrl) return null;
-  const res = await fetch(`${apiUrl}/wp-json/wp/v2/posts?slug=${slug}&_embed=1`, {
-    next: { revalidate: 3600 },
-  });
-  if (!res.ok) return null;
-  const posts = (await res.json()) as RawPost[];
-  return posts[0] ? normalize(posts[0]) : null;
+  try {
+    const res = await fetch(`${apiUrl}/wp-json/wp/v2/posts?slug=${slug}&_embed=1`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return null;
+    const posts = (await res.json()) as RawPost[];
+    return posts[0] ? normalize(posts[0]) : null;
+  } catch {
+    return null;
+  }
 }
 
 export const isBlogConfigured = Boolean(apiUrl);
