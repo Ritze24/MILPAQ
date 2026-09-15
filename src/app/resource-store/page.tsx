@@ -12,7 +12,7 @@ import {
   IconHandshake,
 } from "@/components/icons";
 import {
-  freeResources,
+  freeResourceCategories,
   toolkits,
   workshopsDetailed,
   implementationServices,
@@ -115,9 +115,16 @@ export default function ResourceStorePage() {
           </div>
           <h2 className="font-display text-2xl font-bold text-milpaq-dark">Free Resources</h2>
         </div>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {freeResources.map((resource) => (
-            <ResourceCard key={resource.name} item={resource} ctaLabel="Request Access" />
+        <div className="mt-8 space-y-10">
+          {freeResourceCategories.map((category) => (
+            <div key={category.name}>
+              <h3 className="font-display text-lg font-semibold text-milpaq-dark">{category.name}</h3>
+              <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {category.items.map((resource) => (
+                  <ResourceCard key={resource.name} item={resource} ctaLabel="Request Access" />
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </section>

@@ -20,14 +20,14 @@ type CatalogItem = {
 
 const catalogItems: CatalogItem[] = [
   {
-    name: "Government Contractor Startup Checklist",
+    name: "Business Entity Set Up Checklist",
     category: "Free Resource",
     badge: "FREE",
     icon: IconShieldCheck,
     colorClass: "bg-milpaq-olive text-white",
   },
   {
-    name: "DLA Readiness Checklist",
+    name: "DLA/DIBBS Bid Tracker",
     category: "Free Resource",
     badge: "FREE",
     icon: IconShieldCheck,

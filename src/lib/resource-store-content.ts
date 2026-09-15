@@ -5,48 +5,27 @@ export type ResourceItem = {
   note?: string;
 };
 
-export const freeResources: ResourceItem[] = [
+export type ResourceCategory = {
+  name: string;
+  items: ResourceItem[];
+};
+
+export const freeResourceCategories: ResourceCategory[] = [
   {
-    name: "Government Contractor Startup Checklist",
-    price: "FREE",
-    includes: [
-      "Entity Setup Checklist",
-      "SAM Registration Overview",
-      "CAGE Code Overview",
-      "JCP Overview",
-      "DIBBS Overview",
-      "First Steps Roadmap",
+    name: "Government Contracting Start-Up Guides",
+    items: [
+      { name: "Business Entity Set Up Checklist", price: "FREE" },
+      { name: "SAM.gov Registration", price: "FREE" },
+      { name: "Small Business Guide to DIBBS", price: "FREE" },
     ],
   },
   {
-    name: "DLA Readiness Checklist",
-    price: "FREE",
-    includes: [
-      "DIBBS Access",
-      "Supplier Readiness",
-      "Packaging Readiness",
-      "Traceability Readiness",
-      "Funding Readiness",
+    name: "Government Contracting Operations Toolkit",
+    items: [
+      { name: "DLA/DIBBS Bid Tracker", price: "FREE" },
+      { name: "Supplier Cage Codes Tracker", price: "FREE" },
+      { name: "Award Tracker", price: "FREE" },
     ],
-  },
-  {
-    name: "DLA Bid Tracking Spreadsheet",
-    price: "FREE",
-    note: "Based on MILPAQ's original bid tracking process.",
-    includes: ["Solicitation Tracking", "Supplier Tracking", "Award Tracking", "Notes", "Follow Up Tracking"],
-  },
-  {
-    name: "Supplier CAGE Code Tracker",
-    price: "FREE",
-    includes: ["Supplier Name", "CAGE Code", "FSC Category", "Notes", "Qualification Tracking"],
-  },
-  {
-    name: "Packaging Readiness Checklist",
-    price: "FREE",
-  },
-  {
-    name: "Origin Inspection Readiness Checklist",
-    price: "FREE",
   },
 ];
 
