@@ -117,28 +117,30 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
-            Why MILPAQ
-          </p>
-          <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-milpaq-dark sm:text-4xl">
-            What Sets Us Apart
-          </h2>
-        </div>
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {differentiators.map(({ icon: Icon, title, description }) => (
-            <div
-              key={title}
-              className="rounded-lg border border-milpaq-border bg-white p-6 transition-shadow hover:shadow-md"
-            >
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-milpaq-tan text-milpaq-deep-olive">
-                <Icon className="h-5 w-5 stroke-current fill-none" />
+      <section className="bg-milpaq-deep-olive py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-tan">
+              Why MILPAQ
+            </p>
+            <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              What Sets Us Apart
+            </h2>
+          </div>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {differentiators.map(({ icon: Icon, title, description }) => (
+              <div
+                key={title}
+                className="rounded-lg border border-milpaq-border bg-white p-6 transition-shadow hover:shadow-md"
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-milpaq-tan text-milpaq-deep-olive">
+                  <Icon className="h-5 w-5 stroke-current fill-none" />
+                </div>
+                <h3 className="font-display mt-4 text-sm font-semibold text-milpaq-dark">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-milpaq-dark/70">{description}</p>
               </div>
-              <h3 className="font-display mt-4 text-sm font-semibold text-milpaq-dark">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-milpaq-dark/70">{description}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
