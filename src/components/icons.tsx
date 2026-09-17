@@ -163,3 +163,66 @@ export function IconDocument({ className }: IconProps) {
     </svg>
   );
 }
+
+export function IconClock({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className ?? base} strokeWidth={2} {...cap}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3.5 2" />
+    </svg>
+  );
+}
+
+export function IconTag({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className ?? base} strokeWidth={2} {...cap}>
+      <path d="M11.5 3.5H5.5a2 2 0 0 0-2 2v6l9.6 9.6a2 2 0 0 0 2.83 0l6.17-6.17a2 2 0 0 0 0-2.83L11.5 3.5z" />
+      <circle cx="8" cy="8" r="1.25" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+export function IconUser({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className ?? base} strokeWidth={2} {...cap}>
+      <circle cx="12" cy="8" r="3.5" />
+      <path d="M4.5 20c1.4-3.5 4.4-5.5 7.5-5.5s6.1 2 7.5 5.5" />
+    </svg>
+  );
+}
+
+export function IconLink({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className ?? base} strokeWidth={2} {...cap}>
+      <path d="M9.5 14.5l5-5" />
+      <path d="M13 7l1.5-1.5a3.5 3.5 0 0 1 5 5L18 12" />
+      <path d="M11 17l-1.5 1.5a3.5 3.5 0 0 1-5-5L6 12" />
+    </svg>
+  );
+}
+
+export function IconLinkedIn({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className ?? base} strokeWidth={2} {...cap}>
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <path d="M7.5 10v6.5M7.5 7.5v.01" />
+      <path d="M11.5 16.5V10M11.5 12.5c0-1.4 1-2.5 2.25-2.5S16 11.1 16 12.5v4" />
+    </svg>
+  );
+}
+
+export function IconTwitterX({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className ?? base} strokeWidth={2} {...cap}>
+      <path d="M5 5l14 14M19 5L5 19" />
+    </svg>
+  );
+}
+
+export function IconFacebook({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className ?? base} strokeWidth={2} {...cap}>
+      <path d="M14.5 21v-7h2.5l.5-3h-3V9c0-.9.3-1.5 1.7-1.5H17.5V4.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4V11H8.5v3H11v7h3.5z" />
+    </svg>
+  );
+}

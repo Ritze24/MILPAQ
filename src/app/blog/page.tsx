@@ -6,6 +6,8 @@ import { CtaBand } from "@/components/cta-band";
 import { getPosts, isBlogConfigured } from "@/lib/wordpress";
 import { blogCategories } from "@/lib/blog-categories";
 
+const AUTHOR_NAME = "Team MilPaq";
+
 export const metadata: Metadata = {
   title: "Blog",
   description:
@@ -64,8 +66,7 @@ export default async function BlogPage() {
                   dangerouslySetInnerHTML={{ __html: latest.excerpt }}
                 />
                 <p className="mt-6 text-sm text-milpaq-dark/50">
-                  {latest.author && <>{latest.author} · </>}
-                  {formatDate(latest.date)}
+                  {AUTHOR_NAME} · {formatDate(latest.date)}
                 </p>
               </div>
             </Link>
@@ -104,8 +105,7 @@ export default async function BlogPage() {
                         dangerouslySetInnerHTML={{ __html: post.excerpt }}
                       />
                       <p className="mt-4 text-xs text-milpaq-dark/50">
-                        {post.author && <>{post.author} · </>}
-                        {formatDate(post.date)}
+                        {AUTHOR_NAME} · {formatDate(post.date)}
                       </p>
                     </div>
                   </Link>
@@ -122,20 +122,13 @@ export default async function BlogPage() {
         </>
       ) : (
         <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-14">
-          <div className="mb-12 rounded-lg border border-milpaq-tan bg-milpaq-tan-light p-6 text-sm text-milpaq-dark/80">
-            The blog is not yet connected to MILPAQ&apos;s WordPress instance. Below is the
-            planned content calendar by category.
-          </div>
           <div className="grid gap-6 sm:grid-cols-2">
             {blogCategories.map((category) => (
               <div
                 key={category.slug}
                 className="rounded-lg border border-milpaq-border bg-white p-6 transition-shadow hover:shadow-md"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
-                  {category.plannedTitles.length} planned posts
-                </p>
-                <h2 className="font-display mt-2 text-lg font-semibold text-milpaq-dark">
+                <h2 className="font-display text-lg font-semibold text-milpaq-dark">
                   {category.name}
                 </h2>
                 <ul className="mt-4 space-y-2.5 text-sm text-milpaq-dark/70">

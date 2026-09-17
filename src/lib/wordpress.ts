@@ -13,6 +13,7 @@ export type WordPressPost = {
   author: string | null;
   featuredImage: { url: string; alt: string } | null;
   categories: { name: string; slug: string }[];
+  tags: { name: string; slug: string }[];
 };
 
 export type PostsPage = {
@@ -49,6 +50,9 @@ function normalize(post: RawPost): WordPressPost {
   const categories = terms
     .filter((term) => term.taxonomy === "category")
     .map((term) => ({ name: term.name, slug: term.slug }));
+  const tags = terms
+    .filter((term) => term.taxonomy === "post_tag")
+    .map((term) => ({ name: term.name, slug: term.slug }));
 
   return {
     id: post.id,
@@ -63,6 +67,7 @@ function normalize(post: RawPost): WordPressPost {
         ? { url: media.source_url, alt: media.alt_text ?? "" }
         : null,
     categories,
+    tags,
   };
 }
 

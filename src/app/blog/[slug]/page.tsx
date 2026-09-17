@@ -1,9 +1,40 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/page-hero";
 import { CtaBand } from "@/components/cta-band";
-import { getPostBySlug, isBlogConfigured } from "@/lib/wordpress";
+import {
+  IconClock,
+  IconUser,
+  IconTag,
+  IconLink,
+  IconMail,
+  IconLinkedIn,
+  IconTwitterX,
+  IconFacebook,
+} from "@/components/icons";
+import { getPostBySlug, getPosts, isBlogConfigured, type WordPressPost } from "@/lib/wordpress";
+
+const AUTHOR_NAME = "Team MilPaq";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://milpaq.com";
+
+function formatDate(date: string) {
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+function readingTime(html: string) {
+  const words = html
+    .replace(/<[^>]+>/g, " ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
 
 export async function generateMetadata({
   params,
@@ -28,22 +59,23 @@ export default async function BlogPostPage({
   const post = await getPostBySlug(slug);
   if (!post) notFound();
 
+  const minutes = readingTime(post.content);
+  const postUrl = `${SITE_URL}/blog/${post.slug}`;
+  const shareText = encodeURIComponent(post.title.replace(/<[^>]+>/g, ""));
+
+  let related: WordPressPost[] = [];
+  const primaryCategory = post.categories[0];
+  if (primaryCategory) {
+    const { posts } = await getPosts({ categorySlug: primaryCategory.slug, perPage: 4 });
+    related = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  }
+
   return (
     <>
       <PageHero
-        eyebrow={post.categories[0]?.name}
+        eyebrow={primaryCategory?.name}
         title={post.title}
         image={post.featuredImage?.url ?? "/brand/services/svc-government-readiness.jpg"}
-        description={[
-          post.author,
-          new Date(post.date).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          }),
-        ]
-          .filter(Boolean)
-          .join(" · ")}
       />
 
       <article className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-14">
@@ -53,6 +85,23 @@ export default async function BlogPostPage({
         >
           ← Back to Blog
         </Link>
+
+        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 border-y border-milpaq-border py-4 text-sm text-milpaq-dark/70">
+          <span className="inline-flex items-center gap-1.5">
+            <IconUser className="h-4 w-4 stroke-current fill-none" />
+            {AUTHOR_NAME}
+          </span>
+          <span>{formatDate(post.date)}</span>
+          <span className="inline-flex items-center gap-1.5">
+            <IconClock className="h-4 w-4 stroke-current fill-none" />
+            {minutes} min read
+          </span>
+          {primaryCategory && (
+            <span className="rounded-full bg-milpaq-tan-light px-3 py-1 text-xs font-semibold uppercase tracking-wide text-milpaq-olive">
+              {primaryCategory.name}
+            </span>
+          )}
+        </div>
 
         <div
           className="mt-8 space-y-5 text-milpaq-dark/90
@@ -69,7 +118,109 @@ export default async function BlogPostPage({
             [&_hr]:my-10 [&_hr]:border-milpaq-border"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
+
+        {post.tags.length > 0 && (
+          <div className="mt-10 flex flex-wrap items-center gap-2 border-t border-milpaq-border pt-6">
+            <IconTag className="h-4 w-4 stroke-current fill-none text-milpaq-dark/50" />
+            {post.tags.map((tag) => (
+              <span
+                key={tag.slug}
+                className="rounded-full border border-milpaq-border px-3 py-1 text-xs font-medium text-milpaq-dark/70"
+              >
+                {tag.name}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <div className="mt-8 flex flex-wrap items-center gap-3 border-t border-milpaq-border pt-6">
+          <span className="text-sm font-medium text-milpaq-dark/70">Share this article:</span>
+          <a
+            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Share on LinkedIn"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-milpaq-border text-milpaq-dark/70 hover:border-milpaq-olive hover:text-milpaq-olive"
+          >
+            <IconLinkedIn className="h-4 w-4 stroke-current fill-none" />
+          </a>
+          <a
+            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=${shareText}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Share on X"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-milpaq-border text-milpaq-dark/70 hover:border-milpaq-olive hover:text-milpaq-olive"
+          >
+            <IconTwitterX className="h-4 w-4 stroke-current fill-none" />
+          </a>
+          <a
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Share on Facebook"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-milpaq-border text-milpaq-dark/70 hover:border-milpaq-olive hover:text-milpaq-olive"
+          >
+            <IconFacebook className="h-4 w-4 stroke-current fill-none" />
+          </a>
+          <a
+            href={`mailto:?subject=${shareText}&body=${encodeURIComponent(postUrl)}`}
+            aria-label="Share by email"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-milpaq-border text-milpaq-dark/70 hover:border-milpaq-olive hover:text-milpaq-olive"
+          >
+            <IconMail className="h-4 w-4 stroke-current fill-none" />
+          </a>
+          <a
+            href={postUrl}
+            aria-label="Copy link"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-milpaq-border text-milpaq-dark/70 hover:border-milpaq-olive hover:text-milpaq-olive"
+          >
+            <IconLink className="h-4 w-4 stroke-current fill-none" />
+          </a>
+        </div>
       </article>
+
+      {related.length > 0 && (
+        <section className="border-t border-milpaq-border bg-milpaq-tan-light/40">
+          <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-14">
+            <h2 className="font-display text-2xl font-bold text-milpaq-dark">Related Blogs</h2>
+            <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {related.map((r) => (
+                <Link
+                  key={r.id}
+                  href={`/blog/${r.slug}`}
+                  className="group overflow-hidden rounded-lg border border-milpaq-border bg-white transition-shadow hover:shadow-md"
+                >
+                  {r.featuredImage && (
+                    <div className="relative aspect-[16/10] w-full overflow-hidden">
+                      <Image
+                        src={r.featuredImage.url}
+                        alt={r.featuredImage.alt}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  )}
+                  <div className="p-6">
+                    {r.categories[0] && (
+                      <p className="text-xs font-semibold uppercase tracking-wide text-milpaq-sage">
+                        {r.categories[0].name}
+                      </p>
+                    )}
+                    <h3
+                      className="font-display mt-2 text-lg font-semibold text-milpaq-dark group-hover:text-milpaq-olive"
+                      dangerouslySetInnerHTML={{ __html: r.title }}
+                    />
+                    <p className="mt-4 text-xs text-milpaq-dark/50">
+                      {AUTHOR_NAME} · {formatDate(r.date)}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <CtaBand
         title="Ready to put this into practice on your next contract?"
