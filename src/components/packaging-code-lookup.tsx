@@ -189,7 +189,7 @@ export function PackagingCodeLookup() {
 
       <aside className="space-y-4">
         <div className="rounded-lg border border-milpaq-tan bg-milpaq-tan-light p-6">
-          <h3 className="font-display text-sm font-semibold text-milpaq-dark">
+          <h3 className="font-display text-lg font-semibold text-milpaq-dark">
             Don&apos;t know your code?
           </h3>
           <p className="mt-2 text-sm text-milpaq-dark/70">

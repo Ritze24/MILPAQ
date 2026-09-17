@@ -136,7 +136,7 @@ export default function AboutPage() {
                 <div className="flex h-11 w-11 items-center justify-center rounded-full bg-milpaq-tan text-milpaq-deep-olive">
                   <Icon className="h-5 w-5 stroke-current fill-none" />
                 </div>
-                <h3 className="font-display mt-4 text-base font-semibold text-milpaq-dark">{title}</h3>
+                <h3 className="font-display mt-4 text-lg font-semibold text-milpaq-dark">{title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-milpaq-dark/70">{description}</p>
               </div>
             ))}

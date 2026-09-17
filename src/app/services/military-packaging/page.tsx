@@ -154,7 +154,7 @@ export default function MilitaryPackagingPage() {
                   <div className="flex h-9 w-9 items-center justify-center rounded-full bg-milpaq-tan text-milpaq-deep-olive">
                     <Icon className="h-4 w-4 stroke-current fill-none" />
                   </div>
-                  <h3 className="font-display mt-3 text-sm font-semibold uppercase leading-tight tracking-wide text-white">
+                  <h3 className="font-display mt-3 text-lg font-semibold uppercase leading-tight tracking-wide text-white">
                     {title}
                   </h3>
                   <p className="mt-1.5 text-xs leading-relaxed text-white/80 [text-shadow:0_1px_3px_rgba(0,0,0,0.8)]">

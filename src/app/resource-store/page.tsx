@@ -31,7 +31,7 @@ function ResourceCard({ item, ctaLabel }: { item: ResourceItem; ctaLabel: string
   return (
     <div className="flex flex-col rounded-lg border border-milpaq-tan bg-white p-6">
       <div className="flex items-start justify-between gap-3">
-        <h3 className="font-display font-medium text-milpaq-dark">{item.name}</h3>
+        <h3 className="font-display text-lg font-medium text-milpaq-dark">{item.name}</h3>
         <span
           className={
             item.price === "FREE"
@@ -165,7 +165,7 @@ export default function ResourceStorePage() {
                   {index + 1}
                 </span>
                 <div>
-                  <h3 className="font-display font-medium text-milpaq-dark">{workshop.title}</h3>
+                  <h3 className="font-display text-lg font-medium text-milpaq-dark">{workshop.title}</h3>
                   <p className="mt-2 text-sm text-milpaq-dark/60">{workshop.topics.join(" · ")}</p>
                 </div>
               </div>

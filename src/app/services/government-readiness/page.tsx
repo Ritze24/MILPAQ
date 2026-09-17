@@ -62,7 +62,7 @@ export default function GovernmentReadinessPage() {
               <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-milpaq-tan text-milpaq-deep-olive">
                 <Icon className="h-5 w-5 stroke-current fill-none" />
               </div>
-              <h3 className="font-display mt-3 text-sm font-semibold text-milpaq-dark">{title}</h3>
+              <h3 className="font-display mt-3 text-lg font-semibold text-milpaq-dark">{title}</h3>
             </div>
           ))}
         </div>

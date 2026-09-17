@@ -88,7 +88,7 @@ export default function ContactPage() {
             </div>
 
             <div className="rounded-lg border border-milpaq-tan bg-milpaq-tan-light p-6">
-              <h3 className="font-display text-sm font-semibold text-milpaq-dark">Company Brochure</h3>
+              <h3 className="font-display text-lg font-semibold text-milpaq-dark">Company Brochure</h3>
               <BrochureDownloadForm triggerClassName="mt-4 flex w-full items-center justify-center gap-2 rounded-md bg-milpaq-olive px-4 py-2.5 text-sm font-semibold text-white hover:bg-milpaq-olive-dark" />
             </div>
 
