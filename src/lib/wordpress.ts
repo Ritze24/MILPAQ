@@ -3,6 +3,13 @@
 // call resolves to empty/null so the blog routes render a "coming soon" state
 // instead of failing the build.
 
+import { setDefaultResultOrder } from "node:dns";
+
+// The Web App host resolves blog.milpaq.com's AAAA record to an address whose
+// TLS handshake fails ("internal error"), while the A record works fine —
+// force IPv4 so server-side fetches to WordPress don't silently fail.
+setDefaultResultOrder("ipv4first");
+
 export type WordPressPost = {
   id: number;
   slug: string;
