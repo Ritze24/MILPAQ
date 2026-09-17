@@ -23,7 +23,7 @@ export function PageHero({
       <section className="relative overflow-hidden bg-milpaq-deep-olive">
         <Image src={image} alt="" fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/25" />
-        <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-28">
+        <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-20">
           {eyebrow && (
             <div className="flex items-center gap-3">
               <span className="h-px w-10 bg-milpaq-tan" />
@@ -65,7 +65,7 @@ export function PageHero({
 
   return (
     <section className="border-b border-milpaq-tan bg-milpaq-tan-light">
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-24">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-16">
         {eyebrow && (
           <p className="font-display text-sm font-semibold uppercase tracking-wide text-milpaq-olive">{eyebrow}</p>
         )}

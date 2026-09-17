@@ -122,7 +122,7 @@ export default function HomePage() {
       />
 
       <section className="border-b border-milpaq-border bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
           <div className="flex snap-x snap-mandatory gap-x-8 overflow-x-auto [scrollbar-width:none] sm:grid sm:grid-cols-3 sm:gap-y-10 sm:overflow-visible lg:grid-cols-6 [&::-webkit-scrollbar]:hidden">
             {credentials.map(({ label, image }) => (
               <div
@@ -142,7 +142,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-24 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6 border-b border-milpaq-border pb-8">
           <div className="max-w-2xl">
             <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
@@ -189,7 +189,7 @@ export default function HomePage() {
       </section>
 
       <section className="bg-milpaq-deep-olive">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-24 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
           <div className="max-w-2xl">
             <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-tan">
               Who We Serve
@@ -224,7 +224,7 @@ export default function HomePage() {
       </section>
 
       <section className="bg-milpaq-cream">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-24 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
           <div className="max-w-2xl">
             <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
               Capabilities

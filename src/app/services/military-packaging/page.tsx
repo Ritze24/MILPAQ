@@ -103,7 +103,7 @@ export default function MilitaryPackagingPage() {
         secondaryCta={{ label: "See Capabilities", href: "#capabilities" }}
       />
 
-      <section id="capabilities" className="mx-auto max-w-6xl px-4 py-12 sm:py-20 sm:px-6">
+      <section id="capabilities" className="mx-auto max-w-6xl px-4 py-12 sm:py-14 sm:px-6">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
             Capabilities
@@ -167,7 +167,7 @@ export default function MilitaryPackagingPage() {
         </div>
       </section>
 
-      <section className="bg-milpaq-cream py-12 sm:py-20">
+      <section className="bg-milpaq-cream py-12 sm:py-14">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
@@ -208,7 +208,7 @@ export default function MilitaryPackagingPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-14 sm:py-24 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-14 sm:py-16 sm:px-6">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
             Get Started

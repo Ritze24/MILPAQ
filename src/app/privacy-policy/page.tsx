@@ -20,7 +20,7 @@ export default function PrivacyPolicyPage() {
         description={`Version ${privacyVersion} - Effective ${privacyEffectiveDate}`}
       />
 
-      <section className="mx-auto max-w-6xl px-4 py-10 sm:py-16 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:py-12 sm:px-6">
         <div className="grid gap-12 lg:grid-cols-[16rem_1fr]">
           <aside className="lg:sticky lg:top-24 lg:h-fit">
             <TermsToc sections={privacySections} />

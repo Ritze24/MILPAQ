@@ -11,7 +11,7 @@ export function CtaBand({
 }) {
   return (
     <section className="bg-milpaq-deep-olive">
-      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-4 py-10 sm:flex-row sm:items-center sm:px-6 sm:py-16 lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-4 py-10 sm:flex-row sm:items-center sm:px-6 sm:py-12 lg:px-8">
         <p className="font-display max-w-xl text-2xl font-semibold uppercase leading-snug tracking-tight text-white sm:text-3xl">
           {title}
         </p>

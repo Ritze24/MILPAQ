@@ -20,7 +20,7 @@ export default function FaqPage() {
         description="Answers on packaging, DCMA inspections, traceability, OEM partnerships, consulting, and compliance."
       />
 
-      <section className="mx-auto max-w-4xl px-4 py-10 sm:py-16 sm:px-6">
+      <section className="mx-auto max-w-4xl px-4 py-10 sm:py-12 sm:px-6">
         <nav aria-label="FAQ categories" className="flex flex-wrap gap-2 border-b border-milpaq-border pb-10">
           {faqCategories.map((category) => (
             <a

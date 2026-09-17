@@ -19,7 +19,7 @@ export default function PackagingCodeLookupPage() {
         description="Enter the packaging codes from your contract or specification sheet and get the decoded requirement for each - sourced directly from MIL-STD-2073-1E, Appendix J."
       />
 
-      <section className="mx-auto max-w-6xl px-4 py-10 sm:py-16 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:py-12 sm:px-6">
         <PackagingCodeLookup />
 
         <p className="mt-10 text-sm text-milpaq-dark/70">

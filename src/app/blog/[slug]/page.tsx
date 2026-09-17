@@ -46,7 +46,7 @@ export default async function BlogPostPage({
           .join(" · ")}
       />
 
-      <article className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
+      <article className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-14">
         <Link
           href="/blog"
           className="inline-flex items-center gap-2 text-sm font-medium text-milpaq-olive hover:underline"

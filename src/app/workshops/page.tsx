@@ -31,7 +31,7 @@ export default function WorkshopsPage() {
         primaryCta={{ label: "Schedule Consultation", href: "/contact" }}
       />
 
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:py-20 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-12 sm:py-14 sm:px-6">
         <div className="grid gap-10 lg:grid-cols-[1fr_20rem]">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
@@ -88,7 +88,7 @@ export default function WorkshopsPage() {
       </section>
 
       <section className="bg-milpaq-cream">
-        <div className="mx-auto max-w-6xl px-4 py-10 sm:py-16 sm:px-6 sm:flex sm:items-center sm:justify-between">
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:py-12 sm:px-6 sm:flex sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-milpaq-sage">
               Want Ongoing Support Instead?

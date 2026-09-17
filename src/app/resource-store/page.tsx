@@ -74,7 +74,7 @@ export default function ResourceStorePage() {
       />
 
       <section className="border-b border-milpaq-border bg-milpaq-cream">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-10 sm:py-16 sm:px-6 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-10 sm:py-12 sm:px-6 lg:grid-cols-2">
           <div>
             <p className="text-sm font-semibold uppercase tracking-wide text-milpaq-olive">
               Everything In One Place
@@ -108,7 +108,7 @@ export default function ResourceStorePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-10 sm:py-16 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:py-12 sm:px-6">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-milpaq-tan text-milpaq-deep-olive">
             <IconShieldCheck className="h-5 w-5 stroke-current fill-none" />
@@ -130,7 +130,7 @@ export default function ResourceStorePage() {
       </section>
 
       <section className="bg-milpaq-tan-light">
-        <div className="mx-auto max-w-6xl px-4 py-10 sm:py-16 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:py-12 sm:px-6">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-milpaq-deep-olive text-milpaq-tan">
               <IconBriefcase className="h-5 w-5 stroke-current fill-none" />
@@ -145,7 +145,7 @@ export default function ResourceStorePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-10 sm:py-16 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:py-12 sm:px-6">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-milpaq-tan text-milpaq-deep-olive">
             <IconTarget className="h-5 w-5 stroke-current fill-none" />
@@ -204,7 +204,7 @@ export default function ResourceStorePage() {
       </section>
 
       <section className="bg-milpaq-tan-light">
-        <div className="mx-auto max-w-6xl px-4 py-10 sm:py-16 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:py-12 sm:px-6">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-milpaq-deep-olive text-milpaq-tan">
               <IconFactory className="h-5 w-5 stroke-current fill-none" />
@@ -235,7 +235,7 @@ export default function ResourceStorePage() {
       </section>
 
       <section className="bg-milpaq-deep-olive">
-        <div className="mx-auto max-w-6xl px-4 py-10 sm:py-16 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:py-12 sm:px-6">
           <div className="grid gap-10 lg:grid-cols-2">
             <div className="rounded-lg border-t-2 border-milpaq-tan bg-white/8 p-8">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-milpaq-tan text-milpaq-deep-olive">

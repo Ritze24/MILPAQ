@@ -69,7 +69,7 @@ export default function OemPartnershipPage() {
         primaryCta={{ label: "Schedule Discovery Call", href: "#discovery-call" }}
       />
 
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:py-20 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-12 sm:py-14 sm:px-6">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
             What We Do
@@ -94,7 +94,7 @@ export default function OemPartnershipPage() {
         </div>
       </section>
 
-      <section className="bg-milpaq-deep-olive py-12 sm:py-20">
+      <section className="bg-milpaq-deep-olive py-12 sm:py-14">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-tan">
@@ -129,7 +129,7 @@ export default function OemPartnershipPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:py-20 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-12 sm:py-14 sm:px-6">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
             Partnership Models
@@ -156,7 +156,7 @@ export default function OemPartnershipPage() {
         </p>
       </section>
 
-      <section id="discovery-call" className="bg-milpaq-cream py-12 sm:py-20">
+      <section id="discovery-call" className="bg-milpaq-cream py-12 sm:py-14">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
             Get Started

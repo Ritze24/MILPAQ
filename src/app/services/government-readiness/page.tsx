@@ -44,7 +44,7 @@ export default function GovernmentReadinessPage() {
         primaryCta={{ label: "Take the Assessment", href: "#assessment" }}
       />
 
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:py-20 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-12 sm:py-14 sm:px-6">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
             Workshop Topics
@@ -69,7 +69,7 @@ export default function GovernmentReadinessPage() {
       </section>
 
       <section className="bg-milpaq-deep-olive">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:py-16 sm:px-6 lg:grid-cols-2 lg:items-center">
+        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:py-12 sm:px-6 lg:grid-cols-2 lg:items-center">
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
             <Image
               src="/brand/home-sections/success-readiness-training.jpg"
@@ -96,7 +96,7 @@ export default function GovernmentReadinessPage() {
         </div>
       </section>
 
-      <section id="assessment" className="mx-auto max-w-3xl px-4 py-12 sm:py-20 sm:px-6">
+      <section id="assessment" className="mx-auto max-w-3xl px-4 py-12 sm:py-14 sm:px-6">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
             Take The Assessment

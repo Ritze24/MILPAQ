@@ -35,7 +35,7 @@ export default async function BlogPage() {
 
       {posts.length > 0 ? (
         <>
-          <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
+          <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-14">
             <Link
               href={`/blog/${latest.slug}`}
               className="group grid overflow-hidden rounded-lg border border-milpaq-border bg-white transition-shadow hover:shadow-lg lg:grid-cols-2"
@@ -121,7 +121,7 @@ export default async function BlogPage() {
           />
         </>
       ) : (
-        <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
+        <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-14">
           <div className="mb-12 rounded-lg border border-milpaq-tan bg-milpaq-tan-light p-6 text-sm text-milpaq-dark/80">
             The blog is not yet connected to MILPAQ&apos;s WordPress instance. Below is the
             planned content calendar by category.

@@ -25,7 +25,7 @@ export function SiteFooter() {
     <footer className="overflow-hidden bg-milpaq-deep-olive text-white/70">
       <div className="h-0.5 bg-milpaq-tan" />
 
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:py-12 sm:px-6 lg:px-8">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-1">
             <Image
