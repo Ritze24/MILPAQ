@@ -53,7 +53,7 @@ export default function GovernmentReadinessPage() {
             What the Readiness Workshop Covers
           </h2>
         </div>
-        <div className="mt-10 grid gap-5 sm:grid-cols-3">
+        <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3">
           {topics.map(({ icon: Icon, title }) => (
             <div
               key={title}
