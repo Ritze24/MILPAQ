@@ -70,7 +70,7 @@ export function StatsBand() {
 
   return (
     <section ref={sectionRef} className="bg-milpaq-deep-olive">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-24 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-14 text-center sm:px-6 sm:py-24 lg:px-8">
         <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-tan">
           Operational Excellence
         </p>
@@ -80,7 +80,7 @@ export function StatsBand() {
 
         <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat) => (
-            <div key={stat.label}>
+            <div key={stat.label} className="flex flex-col items-center">
               <p className="font-display text-5xl font-bold text-white sm:text-6xl">
                 <CountUpValue value={stat.value} animate={animate} />
               </p>

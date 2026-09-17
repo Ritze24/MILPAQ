@@ -122,18 +122,23 @@ export default function HomePage() {
       />
 
       <section className="border-b border-milpaq-border bg-white">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-8 gap-y-10 px-4 py-8 sm:grid-cols-3 sm:px-6 sm:py-12 lg:grid-cols-6 lg:px-8">
-          {credentials.map(({ label, image }) => (
-            <div key={label} className="relative h-16 w-full sm:h-20">
-              <Image
-                src={image}
-                alt={label}
-                fill
-                sizes="(min-width: 1024px) 200px, (min-width: 640px) 33vw, 50vw"
-                className="object-contain"
-              />
-            </div>
-          ))}
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+          <div className="flex snap-x snap-mandatory gap-x-8 overflow-x-auto [scrollbar-width:none] sm:grid sm:grid-cols-3 sm:gap-y-10 sm:overflow-visible lg:grid-cols-6 [&::-webkit-scrollbar]:hidden">
+            {credentials.map(({ label, image }) => (
+              <div
+                key={label}
+                className="relative h-16 w-[calc((100%-4rem)/3)] shrink-0 snap-start sm:h-20 sm:w-full"
+              >
+                <Image
+                  src={image}
+                  alt={label}
+                  fill
+                  sizes="(min-width: 1024px) 200px, (min-width: 640px) 33vw, 50vw"
+                  className="object-contain"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
