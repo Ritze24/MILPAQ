@@ -209,7 +209,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="font-display text-base font-semibold text-milpaq-charcoal">{title}</h3>
+                  <h3 className="font-display text-lg font-semibold text-milpaq-charcoal">{title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-milpaq-charcoal/70">{description}</p>
                 </div>
               </div>
