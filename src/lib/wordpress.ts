@@ -103,6 +103,8 @@ export async function getPosts({
       _embed: "1",
       page: String(page),
       per_page: String(perPage),
+      orderby: "date",
+      order: "desc",
     });
 
     if (categorySlug) {
