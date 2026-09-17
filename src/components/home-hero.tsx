@@ -28,7 +28,7 @@ export function HomeHero({
       />
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/25" />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-32 lg:px-8">
         {eyebrow && (
           <div className="flex items-center gap-3">
             <span className="h-px w-10 bg-milpaq-tan" />

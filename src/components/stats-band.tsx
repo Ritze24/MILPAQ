@@ -70,7 +70,7 @@ export function StatsBand() {
 
   return (
     <section ref={sectionRef} className="bg-milpaq-deep-olive">
-      <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-24 lg:px-8">
         <div className="flex items-center gap-3">
           <span className="h-2.5 w-2.5 shrink-0 bg-milpaq-tan" />
           <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-tan">

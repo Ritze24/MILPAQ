@@ -29,7 +29,7 @@ function TestimonialCard({ quote, attribution }: Testimonial) {
 
 export function TestimonialsGrid() {
   return (
-    <section className="bg-milpaq-cream py-24">
+    <section className="bg-milpaq-cream py-14 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
