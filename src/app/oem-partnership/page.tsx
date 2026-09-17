@@ -87,7 +87,7 @@ export default function OemPartnershipPage() {
               <div className="flex h-11 w-11 items-center justify-center rounded-full bg-milpaq-tan text-milpaq-deep-olive">
                 <Icon className="h-5 w-5 stroke-current fill-none" />
               </div>
-              <h3 className="font-display mt-4 text-lg font-semibold text-milpaq-dark">{title}</h3>
+              <h3 className="font-display mt-4 text-xl font-semibold text-milpaq-dark">{title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-milpaq-dark/70">{description}</p>
             </div>
           ))}
@@ -119,7 +119,7 @@ export default function OemPartnershipPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/5" />
                 <div className="relative p-6">
-                  <h3 className="font-display text-lg font-semibold uppercase leading-tight tracking-wide text-white">
+                  <h3 className="font-display text-xl font-semibold uppercase leading-tight tracking-wide text-white">
                     {title}
                   </h3>
                 </div>
@@ -144,7 +144,7 @@ export default function OemPartnershipPage() {
               <div className="flex h-11 w-11 items-center justify-center rounded-full bg-milpaq-tan text-milpaq-deep-olive">
                 <Icon className="h-5 w-5 stroke-current fill-none" />
               </div>
-              <h3 className="font-display mt-4 text-lg font-semibold text-milpaq-dark">{title}</h3>
+              <h3 className="font-display mt-4 text-xl font-semibold text-milpaq-dark">{title}</h3>
               <p className="mt-2 text-sm text-milpaq-dark/70">{description}</p>
             </div>
           ))}
