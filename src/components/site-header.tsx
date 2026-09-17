@@ -99,7 +99,12 @@ export function SiteHeader() {
             Services
           </span>
           {servicesNav.map((item) => (
-            <Link key={item.href} href={item.href} className="py-2 pl-3 text-sm text-milpaq-dark/80">
+            <Link
+              key={item.href}
+              href={item.href}
+              className="py-2 pl-3 text-sm text-milpaq-dark/80"
+              onClick={() => setMobileOpen(false)}
+            >
               {item.label}
             </Link>
           ))}
@@ -108,6 +113,7 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               className="py-2 font-display text-sm font-medium uppercase tracking-wide text-milpaq-charcoal"
+              onClick={() => setMobileOpen(false)}
             >
               {item.label}
             </Link>
@@ -116,6 +122,7 @@ export function SiteHeader() {
             href="/services/military-packaging#quote"
             shineColor="#ffffff"
             className="mt-2 flex items-center justify-center rounded bg-milpaq-tan px-6 py-2.5 text-center font-display text-sm font-semibold uppercase tracking-wide text-milpaq-deep-olive"
+            onClick={() => setMobileOpen(false)}
           >
             Request Packaging Quote
           </ShinyLink>

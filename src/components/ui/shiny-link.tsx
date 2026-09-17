@@ -27,17 +27,20 @@ export function ShinyLink({
   children,
   className,
   shineColor = "#c8b86a",
+  onClick,
 }: {
   href: string
   children: ReactNode
   className?: string
   shineColor?: string
+  onClick?: () => void
 }) {
   return (
     <MotionLink
       href={href}
       className={cn("relative", className)}
       style={{ "--shine": shineColor } as CSSProperties}
+      onClick={onClick}
       {...animationProps}
     >
       <span
