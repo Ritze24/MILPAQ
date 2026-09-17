@@ -54,10 +54,10 @@ export default function AboutPage() {
         eyebrow="About MILPAQ"
         title="Consulting Is One Service. Execution Is The Business."
         image="/brand/services/svc-facility-hosting.jpg"
-        description="MILPAQ Solutions is the government contracting and compliance division of 305 Aero Supplies LLC — bridging the gap between manufacturers, suppliers, and government customers."
+        description="MILPAQ Solutions is the government contracting and compliance division of 305 Aero Supplies LLC - bridging the gap between manufacturers, suppliers, and government customers."
       />
 
-      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-12 sm:py-20 sm:px-6">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
             <Image
@@ -76,7 +76,7 @@ export default function AboutPage() {
               Built From Real Execution Experience
             </h2>
             <p className="mt-5 text-milpaq-dark/80">
-              305 Aero Supplies LLC — the parent company behind MILPAQ Solutions — is a
+              305 Aero Supplies LLC - the parent company behind MILPAQ Solutions - is a
               Service-Disabled Veteran-Owned Small Business built on logistics, government
               procurement, and supply chain management. Specializing in wholesale distribution,
               warehousing, MIL-STD packaging, and targeted marketing, we provide end-to-end
@@ -84,15 +84,15 @@ export default function AboutPage() {
             </p>
             <p className="mt-4 text-milpaq-dark/80">
               MILPAQ Solutions was formed to focus that experience specifically on government
-              market access, packaging compliance, and contract execution — becoming the bridge
+              market access, packaging compliance, and contract execution - becoming the bridge
               manufacturers need between what they build and what the government buys.
             </p>
-            <p className="mt-4 font-medium text-milpaq-dark">Richard Jones — Founder</p>
+            <p className="mt-4 font-medium text-milpaq-dark">Richard Jones - Founder</p>
           </div>
         </div>
       </section>
 
-      <section className="bg-milpaq-cream py-20">
+      <section className="bg-milpaq-cream py-12 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid gap-10 sm:grid-cols-2">
             <div className="rounded-lg border border-milpaq-tan bg-white p-8">
@@ -117,7 +117,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-milpaq-deep-olive py-20">
+      <section className="bg-milpaq-deep-olive py-12 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-tan">
@@ -144,7 +144,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-12 sm:py-20 sm:px-6">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
             Certifications &amp; Registrations

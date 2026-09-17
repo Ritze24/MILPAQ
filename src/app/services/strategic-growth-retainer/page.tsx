@@ -24,7 +24,7 @@ const featuredInclusion = {
   image: "/brand/home-sections/hwh-strategic-growth.jpg",
   title: "Weekly Strategy Calls",
   description:
-    "A standing weekly call with your MILPAQ team — pipeline review, priorities, and next steps.",
+    "A standing weekly call with your MILPAQ team - pipeline review, priorities, and next steps.",
 };
 
 const inclusions = [
@@ -73,12 +73,12 @@ export default function StrategicGrowthRetainerPage() {
         eyebrow="$10,000/month · 90-Day Minimum"
         title="Your Outsourced Government Business Development Team"
         image="/brand/services/svc-strategic-growth.jpg"
-        description="A monthly retainer for contractors who are serious about scaling government revenue — MILPAQ acts as an extension of your team."
+        description="A monthly retainer for contractors who are serious about scaling government revenue - MILPAQ acts as an extension of your team."
         primaryCta={{ label: "Apply For Strategic Growth Program", href: "#book" }}
         secondaryCta={{ label: "See What's Included", href: "#included" }}
       />
 
-      <section id="included" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <section id="included" className="mx-auto max-w-6xl px-4 py-12 sm:py-20 sm:px-6">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
             What&apos;s Included
@@ -148,7 +148,7 @@ export default function StrategicGrowthRetainerPage() {
         </p>
       </section>
 
-      <section id="book" className="bg-milpaq-cream py-20">
+      <section id="book" className="bg-milpaq-cream py-12 sm:py-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
             Apply

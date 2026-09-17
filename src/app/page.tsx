@@ -72,7 +72,7 @@ const serviceCards = [
     image: "/brand/services/svc-military-packaging.jpg",
     eyebrow: "MIL-STD-2073 / 129",
     title: "Military Packaging & Contract Execution",
-    description: "End-to-end packaging, labeling, and export prep — from award through delivery.",
+    description: "End-to-end packaging, labeling, and export prep - from award through delivery.",
     href: "/services/military-packaging",
     cta: "Explore Packaging",
   },
@@ -116,7 +116,7 @@ export default function HomePage() {
       <HomeHero
         eyebrow="Government Market Access · Compliance · Contract Execution"
         title="Turning Manufacturing Capability Into Government Opportunity"
-        description="MILPAQ helps manufacturers and contractors win, package, inspect, and deliver on U.S. government contracts — without building an in-house contracting department."
+        description="MILPAQ helps manufacturers and contractors win, package, inspect, and deliver on U.S. government contracts - without building an in-house contracting department."
         primaryCta={{ label: "Schedule Discovery Call", href: "/oem-partnership" }}
         secondaryCta={{ label: "Request Packaging Quote", href: "/services/military-packaging#quote" }}
       />
@@ -148,7 +148,7 @@ export default function HomePage() {
             </h2>
           </div>
           <p className="max-w-sm text-sm leading-relaxed text-milpaq-charcoal/60">
-            Four capabilities, one execution partner — from first opportunity to delivered
+            Four capabilities, one execution partner - from first opportunity to delivered
             contract.
           </p>
         </div>

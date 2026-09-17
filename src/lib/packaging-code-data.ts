@@ -100,9 +100,9 @@ export const packagingCodeCategories: CodeCategory[] = [
         description:
           "Watervaporproof protection with desiccant. Items protected in accordance with Method 50 shall be heat sealed in a watervaporproof enclosure with activated desiccant. Unit packs of all of these methods shall also include a humidity indicator. Projections, sharp edges, or other physical characteristics of the item that may damage the watervaporproof bag or container shall be cushioned, and the item shall also be cushioned as required to mitigate shock and vibration. Requirements for desiccant and humidity indicators:",
         options: [
-          "Desiccant (activated) — bagged, activated desiccant conforming to MIL-D-3464 (Type I unless Type II or III is required), strategically located in the pack so as not to be load bearing, and not in direct contact with critical surfaces of the item.",
-          "Quantity of desiccant — computed using Formula I (sealed container other than rigid all-metal: U = CA + X1D + X2D + X3D + X4D) or Formula II (sealed rigid metal container: U = KV + X1D + X2D + X3D + X4D); see the standard for the full variable definitions.",
-          "Humidity indicators — shall conform to MS20003 and be firmly secured directly behind the inspection window or immediately within the closure seal of the container.",
+          "Desiccant (activated) - bagged, activated desiccant conforming to MIL-D-3464 (Type I unless Type II or III is required), strategically located in the pack so as not to be load bearing, and not in direct contact with critical surfaces of the item.",
+          "Quantity of desiccant - computed using Formula I (sealed container other than rigid all-metal: U = CA + X1D + X2D + X3D + X4D) or Formula II (sealed rigid metal container: U = KV + X1D + X2D + X3D + X4D); see the standard for the full variable definitions.",
+          "Humidity indicators - shall conform to MS20003 and be firmly secured directly behind the inspection window or immediately within the closure seal of the container.",
         ],
       },
       {
@@ -138,7 +138,7 @@ export const packagingCodeCategories: CodeCategory[] = [
         description:
           "Rigid metal container with desiccant, sealed. The item, preserved, wrapped, cushioned and desiccated with humidity indicator as required, shall be enclosed in a sealed, close fitting, metal container. Any selected type of rigid metal container with a machine seamed or welded closure, or reusable container with a gasketed or threaded closure, shall be used.",
       },
-      { code: "ZZ", description: "Special requirement — see specific instructions or drawings provided." },
+      { code: "ZZ", description: "Special requirement - see specific instructions or drawings provided." },
     ],
   },
   {
@@ -222,7 +222,7 @@ export const packagingCodeCategories: CodeCategory[] = [
       {
         code: "JF",
         description:
-          "Preserve by Method 10 — Items shall be preserved in a vacuum formed skin pack, formed from either cellulose acetate, cellulose butyrate or cellulose propionate. The material shall be 10 to 15 mils minimum thickness prior to draw and 2 to 4 mils thickness after draw. Class domestic fiberboard meeting the requirements of ASTM D4727/D4727M shall be used as a stiffener.",
+          "Preserve by Method 10 - Items shall be preserved in a vacuum formed skin pack, formed from either cellulose acetate, cellulose butyrate or cellulose propionate. The material shall be 10 to 15 mils minimum thickness prior to draw and 2 to 4 mils thickness after draw. Class domestic fiberboard meeting the requirements of ASTM D4727/D4727M shall be used as a stiffener.",
       },
     ],
   },
@@ -233,7 +233,7 @@ export const packagingCodeCategories: CodeCategory[] = [
     placeholder: "e.g. 1",
     entries: [
       { code: "1", description: "Any suitable process that is not injurious to the item." },
-      { code: "Z", description: "Special requirements — see specific instructions or drawings provided." },
+      { code: "Z", description: "Special requirements - see specific instructions or drawings provided." },
       { code: "0", description: "No requirement." },
     ],
   },
@@ -271,7 +271,7 @@ export const packagingCodeCategories: CodeCategory[] = [
       { code: "65", description: "MIL-PRF-83282, hydraulic fluid, synthetic, fire retardant." },
       { code: "80", description: "MIL-DTL-53030, primer coating, epoxy, water reducible." },
       { code: "89", description: "Preserve with normal operating lubricant." },
-      { code: "ZZ", description: "Special requirement — see specific instructions or drawings provided." },
+      { code: "ZZ", description: "Special requirement - see specific instructions or drawings provided." },
       { code: "00", description: "No requirement." },
     ],
   },
@@ -298,7 +298,7 @@ export const packagingCodeCategories: CodeCategory[] = [
       { code: "K3", description: "MIL-PRF-81705, Type III, Class 1, transparent, electrostatic protective, static shielding, barrier material or MIL-DTL-117, Type II, Class H, Style 2 bag." },
       { code: "LA", description: "A-A-50177, lens paper." },
       { code: "MB", description: "MIL-PRF-3420, volatile corrosion inhibitor treated material." },
-      { code: "ZZ", description: "Special requirements — see specific instructions or drawings provided." },
+      { code: "ZZ", description: "Special requirements - see specific instructions or drawings provided." },
       { code: "00", description: "No requirement." },
     ],
   },
@@ -390,7 +390,7 @@ export const packagingCodeCategories: CodeCategory[] = [
       { code: "U", description: "Minimum thickness: 4-3/4 inches thick." },
       { code: "V", description: "Minimum thickness: 5 inches thick." },
       { code: "W", description: "Minimum thickness: 5-1/4 inches thick." },
-      { code: "Z", description: "Special requirements — see specific instructions or drawings provided." },
+      { code: "Z", description: "Special requirements - see specific instructions or drawings provided." },
       { code: "0", description: "Not applicable." },
     ],
   },
@@ -503,7 +503,7 @@ export const packagingCodeCategories: CodeCategory[] = [
       { code: "WD", description: "Plastic containers constructed of rigid transparent material that, if applicable, is resistant to lubricant or preservative being used. Containers too small for adequate marking shall be overpackaged in envelopes for identification marking purposes." },
       { code: "WM", description: "PPP-T-495, mailing tube." },
       { code: "WY", description: "Warner-Robins Air Logistics Center Drawing Nos. 11214-5002-100, 11214-5002-200, 11214-5002-300, or 11214-50020-400 for shipping and storage of avionics instruments." },
-      { code: "ZZ", description: "Special requirement — see specific instructions or drawings provided." },
+      { code: "ZZ", description: "Special requirement - see specific instructions or drawings provided." },
       { code: "00", description: "No requirement." },
     ],
   },
@@ -652,7 +652,7 @@ export const packagingCodeCategories: CodeCategory[] = [
       { code: "6", description: "Packing shall be accomplished to meet the performance test requirements of ASTM D4169, Distribution Cycle 18, Assurance Level 3." },
       { code: "8", description: "Packing shall be accomplished in accordance with the Level A packing requirements as specified for the item." },
       { code: "9", description: "Packing shall be accomplished in accordance with the Level B packing requirements as specified for the item." },
-      { code: "Z", description: "Special requirement — see specific instructions or drawings provided." },
+      { code: "Z", description: "Special requirement - see specific instructions or drawings provided." },
       { code: "0", description: "Packing not authorized, see next higher level of packing for requirement." },
     ],
   },
@@ -696,12 +696,12 @@ export const nonTabularFields = [
   {
     key: "specialMaterialContent",
     label: "Special Material Content",
-    note: "Any special material declarations required for the item's construction or packaging are specified on the contract or drawing — not a universal code table.",
+    note: "Any special material declarations required for the item's construction or packaging are specified on the contract or drawing - not a universal code table.",
   },
   {
     key: "hazardousMaterial",
     label: "Hazardous Material",
-    note: "Governed by IATA Dangerous Goods Regulations, the IMDG Code, and CFR Title 29/40/49 (see Specialized Preservation code HM above) — not a universal code table.",
+    note: "Governed by IATA Dangerous Goods Regulations, the IMDG Code, and CFR Title 29/40/49 (see Specialized Preservation code HM above) - not a universal code table.",
   },
   {
     key: "shelfLife",

@@ -163,7 +163,7 @@ export function PackagingCodeLookup() {
                     className="rounded-md border border-milpaq-border bg-milpaq-cream p-5"
                   >
                     <p className="text-xs font-semibold uppercase tracking-wide text-milpaq-sage">
-                      {result.label} — Code {result.code.toUpperCase()}
+                      {result.label} - Code {result.code.toUpperCase()}
                     </p>
                     {result.description ? (
                       <div className="mt-2">
@@ -241,7 +241,7 @@ export function PackagingCodeLookup() {
               {nonTabularFields.map((field) => (
                 <li key={field.key} className="text-xs text-milpaq-dark/70">
                   <span className="font-semibold text-milpaq-dark">{field.label}</span>
-                  {" — "}
+                  {" - "}
                   {field.note}
                 </li>
               ))}

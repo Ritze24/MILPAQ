@@ -46,7 +46,7 @@ export default async function SeoLandingPage({
         description={page.intro}
         image={heroImageByRelatedHref[page.relatedHref]}
       />
-      <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+      <section className="mx-auto max-w-3xl px-4 py-10 sm:py-16 sm:px-6">
         <Link
           href={page.relatedHref}
           className="inline-block rounded-md bg-milpaq-olive px-6 py-3 text-sm font-semibold text-white hover:bg-milpaq-olive-dark"

@@ -11,7 +11,7 @@ export const seoPages: SeoPage[] = [
     slug: "military-packaging-services",
     title: "Military Packaging Services",
     intro:
-      "MILPAQ provides military packaging services built around MIL-STD-2073 preservation, packing, and marking requirements — from packaging design through documentation review.",
+      "MILPAQ provides military packaging services built around MIL-STD-2073 preservation, packing, and marking requirements - from packaging design through documentation review.",
     relatedHref: "/services/military-packaging",
     relatedLabel: "Military Packaging & Contract Execution",
   },
@@ -19,7 +19,7 @@ export const seoPages: SeoPage[] = [
     slug: "dcma-origin-inspection-services",
     title: "DCMA Origin Inspection Services",
     intro:
-      "MILPAQ facilitates DCMA origin inspections — readiness review, documentation review, and inspector coordination — at MILPAQ's facility.",
+      "MILPAQ facilitates DCMA origin inspections - readiness review, documentation review, and inspector coordination - at MILPAQ's facility.",
     relatedHref: "/services/dcma-origin-inspection",
     relatedLabel: "DCMA Origin Inspection Facilitation",
   },
@@ -75,7 +75,7 @@ export const seoPages: SeoPage[] = [
     slug: "government-contract-funding",
     title: "Government Contract Funding",
     intro:
-      "Financing a government contract often requires different tools than commercial financing — supplier financing, lines of credit, SBA financing, and contract/invoice financing. MILPAQ's Government Contract Financing & Growth Capital workshop covers these options.",
+      "Financing a government contract often requires different tools than commercial financing - supplier financing, lines of credit, SBA financing, and contract/invoice financing. MILPAQ's Government Contract Financing & Growth Capital workshop covers these options.",
     relatedHref: "/workshops",
     relatedLabel: "Workshops & Consulting",
   },

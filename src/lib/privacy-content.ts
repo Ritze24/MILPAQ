@@ -43,7 +43,7 @@ export const privacySections: PrivacySection[] = [
       },
       {
         type: "p",
-        text: "We also automatically collect limited technical information — such as browser type, device information, and pages visited — through standard web server logs and, where enabled, analytics tools.",
+        text: "We also automatically collect limited technical information - such as browser type, device information, and pages visited - through standard web server logs and, where enabled, analytics tools.",
       },
     ],
   },

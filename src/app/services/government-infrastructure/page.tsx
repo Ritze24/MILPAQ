@@ -6,7 +6,7 @@ import { IconGlobe, IconDocument, IconTarget, IconCertificate, IconMessage } fro
 export const metadata: Metadata = {
   title: "Government Infrastructure Services",
   description:
-    "Contractor websites, capability statements, CRM setup, proposal templates, and marketing assets — powered by MILPAQ and strategic partners.",
+    "Contractor websites, capability statements, CRM setup, proposal templates, and marketing assets - powered by MILPAQ and strategic partners.",
 };
 
 const services = [
@@ -48,7 +48,7 @@ export default function GovernmentInfrastructurePage() {
         primaryCta={{ label: "Request Infrastructure Review", href: "/contact" }}
       />
 
-      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-12 sm:py-20 sm:px-6">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
             What We Deliver

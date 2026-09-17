@@ -70,18 +70,18 @@ export default function ResourceStorePage() {
         eyebrow="Resource Store"
         title="Toolkits, Checklists & Training for Government Contractors"
         image="/brand/services/svc-resource-store.jpg"
-        description="MILPAQ isn't a course company — these are the same checklists, templates, and workshops we use inside our own client engagements, made available directly."
+        description="MILPAQ isn't a course company - these are the same checklists, templates, and workshops we use inside our own client engagements, made available directly."
       />
 
       <section className="border-b border-milpaq-border bg-milpaq-cream">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-10 sm:py-16 sm:px-6 lg:grid-cols-2">
           <div>
             <p className="text-sm font-semibold uppercase tracking-wide text-milpaq-olive">
               Everything In One Place
             </p>
             <h2 className="font-display mt-2 text-2xl font-bold text-milpaq-dark">One Store, Every Stage of Readiness</h2>
             <p className="mt-4 max-w-md text-milpaq-dark/70">
-              From your first CAGE Code to a fully outsourced government contracting team — free
+              From your first CAGE Code to a fully outsourced government contracting team - free
               checklists, paid toolkits, workshops, implementation services, and the Strategic
               Growth Retainer all live here.
             </p>
@@ -108,7 +108,7 @@ export default function ResourceStorePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:py-16 sm:px-6">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-milpaq-tan text-milpaq-deep-olive">
             <IconShieldCheck className="h-5 w-5 stroke-current fill-none" />
@@ -130,7 +130,7 @@ export default function ResourceStorePage() {
       </section>
 
       <section className="bg-milpaq-tan-light">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:py-16 sm:px-6">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-milpaq-deep-olive text-milpaq-tan">
               <IconBriefcase className="h-5 w-5 stroke-current fill-none" />
@@ -145,7 +145,7 @@ export default function ResourceStorePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:py-16 sm:px-6">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-milpaq-tan text-milpaq-deep-olive">
             <IconTarget className="h-5 w-5 stroke-current fill-none" />
@@ -153,7 +153,7 @@ export default function ResourceStorePage() {
           <h2 className="font-display text-2xl font-bold text-milpaq-dark">Workshops &amp; Academy</h2>
         </div>
         <p className="mt-4 max-w-2xl text-milpaq-dark/70">
-          Seven workshops covering the full lifecycle of government contracting — from first
+          Seven workshops covering the full lifecycle of government contracting - from first
           registration through post-award execution and growth capital.
         </p>
 
@@ -204,7 +204,7 @@ export default function ResourceStorePage() {
       </section>
 
       <section className="bg-milpaq-tan-light">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:py-16 sm:px-6">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-milpaq-deep-olive text-milpaq-tan">
               <IconFactory className="h-5 w-5 stroke-current fill-none" />
@@ -212,7 +212,7 @@ export default function ResourceStorePage() {
             <h2 className="font-display text-2xl font-bold text-milpaq-dark">Implementation Services</h2>
           </div>
           <p className="mt-4 max-w-2xl text-milpaq-dark/70">
-            When you&apos;d rather MILPAQ execute directly — packaging, systems, compliance readiness,
+            When you&apos;d rather MILPAQ execute directly - packaging, systems, compliance readiness,
             and contractor infrastructure, priced per engagement.
           </p>
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -235,7 +235,7 @@ export default function ResourceStorePage() {
       </section>
 
       <section className="bg-milpaq-deep-olive">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:py-16 sm:px-6">
           <div className="grid gap-10 lg:grid-cols-2">
             <div className="rounded-lg border-t-2 border-milpaq-tan bg-white/8 p-8">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-milpaq-tan text-milpaq-deep-olive">

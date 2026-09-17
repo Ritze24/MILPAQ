@@ -18,7 +18,7 @@ export const accessibilitySections: AccessibilitySection[] = [
     blocks: [
       {
         type: "p",
-        text: "MILPAQ Solutions is committed to making milpaq.com accessible to the widest possible audience, including people with disabilities. We believe everyone — manufacturers, suppliers, and government partners alike — should be able to access information about our services without barriers.",
+        text: "MILPAQ Solutions is committed to making milpaq.com accessible to the widest possible audience, including people with disabilities. We believe everyone - manufacturers, suppliers, and government partners alike - should be able to access information about our services without barriers.",
       },
     ],
   },
@@ -50,7 +50,7 @@ export const accessibilitySections: AccessibilitySection[] = [
     blocks: [
       {
         type: "p",
-        text: "Accessibility is an ongoing effort. As we add new pages, tools, and features — including our packaging code lookup and RFQ workflows — we review them for accessibility and make improvements as we identify opportunities.",
+        text: "Accessibility is an ongoing effort. As we add new pages, tools, and features - including our packaging code lookup and RFQ workflows - we review them for accessibility and make improvements as we identify opportunities.",
       },
     ],
   },

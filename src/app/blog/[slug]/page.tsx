@@ -44,7 +44,7 @@ export default async function BlogPostPage({
           .join(" · ")}
       />
 
-      <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+      <article className="mx-auto max-w-3xl px-4 py-10 sm:py-16 sm:px-6">
         <div
           className="space-y-4 text-milpaq-dark/90 [&_a]:text-milpaq-olive [&_a]:underline [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-milpaq-dark"
           dangerouslySetInnerHTML={{ __html: post.content }}

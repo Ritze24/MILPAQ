@@ -20,11 +20,11 @@ export default async function BlogPage() {
         eyebrow="Blog"
         title="Government Contracting Insights"
         image="/brand/services/svc-government-readiness.jpg"
-        description="Packaging, DCMA inspections, traceability, OEM partnerships, compliance, and market entry — from the team that executes these contracts."
+        description="Packaging, DCMA inspections, traceability, OEM partnerships, compliance, and market entry - from the team that executes these contracts."
       />
 
       {posts.length > 0 ? (
-        <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <section className="mx-auto max-w-6xl px-4 py-10 sm:py-16 sm:px-6">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
               <Link
@@ -71,7 +71,7 @@ export default async function BlogPage() {
           </div>
         </section>
       ) : (
-        <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <section className="mx-auto max-w-6xl px-4 py-10 sm:py-16 sm:px-6">
           <div className="mb-10 rounded-lg border border-milpaq-tan bg-milpaq-tan-light p-6 text-sm text-milpaq-dark/80">
             The blog is not yet connected to MILPAQ&apos;s WordPress instance. Below is the
             planned content calendar by category.
