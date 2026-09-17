@@ -51,15 +51,28 @@ type RawPost = {
   };
 };
 
+// The REST API returns term names HTML-entity-encoded (e.g. "Packaging &amp;
+// Preservation") since they're meant for HTML contexts; we render them as
+// plain text, so decode the common entities here instead.
+function decodeEntities(text: string): string {
+  return text
+    .replace(/&amp;/g, "&")
+    .replace(/&#0?38;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#0?39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">");
+}
+
 function normalize(post: RawPost): WordPressPost {
   const media = post._embedded?.["wp:featuredmedia"]?.[0];
   const terms = post._embedded?.["wp:term"]?.flat() ?? [];
   const categories = terms
     .filter((term) => term.taxonomy === "category")
-    .map((term) => ({ name: term.name, slug: term.slug }));
+    .map((term) => ({ name: decodeEntities(term.name), slug: term.slug }));
   const tags = terms
     .filter((term) => term.taxonomy === "post_tag")
-    .map((term) => ({ name: term.name, slug: term.slug }));
+    .map((term) => ({ name: decodeEntities(term.name), slug: term.slug }));
 
   return {
     id: post.id,
@@ -95,7 +108,7 @@ export async function getPosts({
     if (categorySlug) {
       const categoryRes = await fetch(
         `${apiUrl}/wp-json/wp/v2/categories?slug=${categorySlug}`,
-        { next: { revalidate: 3600 } }
+        { next: { revalidate: 120 } }
       );
       if (categoryRes.ok) {
         const matches = (await categoryRes.json()) as { id: number }[];
@@ -104,7 +117,7 @@ export async function getPosts({
     }
 
     const res = await fetch(`${apiUrl}/wp-json/wp/v2/posts?${params}`, {
-      next: { revalidate: 3600 },
+      next: { revalidate: 120 },
     });
     if (!res.ok) return { posts: [], totalPages: 0 };
 
@@ -122,7 +135,7 @@ export async function getPostBySlug(slug: string): Promise<WordPressPost | null>
   if (!apiUrl) return null;
   try {
     const res = await fetch(`${apiUrl}/wp-json/wp/v2/posts?slug=${slug}&_embed=1`, {
-      next: { revalidate: 3600 },
+      next: { revalidate: 120 },
     });
     if (!res.ok) return null;
     const posts = (await res.json()) as RawPost[];
