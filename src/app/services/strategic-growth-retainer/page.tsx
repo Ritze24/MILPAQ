@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
 import { SimpleLeadForm } from "@/components/simple-lead-form";
+import { company } from "@/lib/constants";
 import {
   IconMessage,
   IconTarget,
@@ -11,6 +12,7 @@ import {
   IconHandshake,
   IconShieldCheck,
   IconCertificate,
+  IconPhone,
 } from "@/components/icons";
 
 export const metadata: Metadata = {
@@ -149,26 +151,78 @@ export default function StrategicGrowthRetainerPage() {
       </section>
 
       <section id="book" className="bg-milpaq-cream py-12 sm:py-14">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
             Apply
           </p>
           <h2 className="font-display mt-3 text-2xl font-bold text-milpaq-dark">
             Apply For Strategic Growth Program
           </h2>
-          <div className="mt-8">
-            <SimpleLeadForm
-              submitLabel="Apply Now"
-              confirmationTitle="Application received"
-              confirmationMessage="MILPAQ will review your application and follow up to schedule a discovery call."
-              fields={[
-                { label: "Company Name", name: "companyName", type: "text", required: true },
-                { label: "Contact Name", name: "contactName", type: "text", required: true },
-                { label: "Email", name: "email", type: "email", required: true },
-                { label: "Phone", name: "phone", type: "tel", required: true },
-                { label: "Tell us about your government contracting goals", name: "message", type: "textarea" },
-              ]}
-            />
+
+          <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_20rem]">
+            <div>
+              <SimpleLeadForm
+                submitLabel="Apply Now"
+                confirmationTitle="Application received"
+                confirmationMessage="MILPAQ will review your application and follow up to schedule a discovery call."
+                fields={[
+                  { label: "Company Name", name: "companyName", type: "text", required: true },
+                  { label: "Contact Name", name: "contactName", type: "text", required: true },
+                  { label: "Email", name: "email", type: "email", required: true },
+                  { label: "Phone", name: "phone", type: "tel", required: true },
+                  {
+                    label: "Tell us about your government contracting goals",
+                    name: "message",
+                    type: "textarea",
+                    required: true,
+                  },
+                ]}
+              />
+            </div>
+
+            <div className="space-y-6">
+              <div className="rounded-lg border border-milpaq-border bg-white p-6">
+                <h3 className="font-display text-xs font-semibold uppercase tracking-wide text-milpaq-sage">
+                  Program At A Glance
+                </h3>
+                <p className="font-display mt-3 text-xl font-bold text-milpaq-dark">
+                  $10,000/month
+                </p>
+                <p className="text-sm text-milpaq-dark/60">90-day minimum commitment</p>
+                <ul className="mt-5 space-y-3">
+                  {[featuredInclusion, ...inclusions].map(({ icon: Icon, title }) => (
+                    <li key={title} className="flex items-center gap-3">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-milpaq-tan text-milpaq-deep-olive">
+                        <Icon className="h-3.5 w-3.5 stroke-current fill-none" />
+                      </span>
+                      <span className="text-sm text-milpaq-dark/80">{title}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="rounded-lg border border-milpaq-tan bg-milpaq-tan-light p-6">
+                <h3 className="font-display text-lg font-semibold text-milpaq-dark">
+                  Have Questions First?
+                </h3>
+                <p className="mt-2 text-sm text-milpaq-dark/70">
+                  Talk it through with our team before you apply.
+                </p>
+                <a
+                  href={company.phoneHref}
+                  className="mt-4 flex items-center gap-2 text-sm font-semibold text-milpaq-olive hover:underline"
+                >
+                  <IconPhone className="h-4 w-4 stroke-current fill-none" />
+                  {company.phone}
+                </a>
+                <Link
+                  href="/contact"
+                  className="mt-2 block text-sm font-medium text-milpaq-dark/70 hover:text-milpaq-olive hover:underline"
+                >
+                  Or send us a message
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
