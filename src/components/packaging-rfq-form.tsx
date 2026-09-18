@@ -47,7 +47,7 @@ export function PackagingRfqForm() {
         <h3 className="font-display text-lg font-semibold text-milpaq-dark">2. Contract Information</h3>
         <div className="mt-4">
           <label className="block text-sm font-medium text-milpaq-dark">
-            Upload Contract or Solicitation
+            Upload Contract or Solicitation <span className="text-red-600">*</span>
           </label>
           <input
             type="file"
@@ -106,7 +106,7 @@ export function PackagingRfqForm() {
       <div>
         <label className="flex items-start gap-2 text-sm text-milpaq-dark">
           <input type="checkbox" required className="mt-1" />
-          I agree to MILPAQ Solutions&apos; Terms &amp; Conditions.
+          I agree to MILPAQ Solutions&apos; Terms &amp; Conditions. <span className="text-red-600">*</span>
         </label>
       </div>
 
@@ -134,6 +134,7 @@ function Field({
   return (
     <label className="block text-sm font-medium text-milpaq-dark">
       {label}
+      {required && <span className="text-red-600"> *</span>}
       <input
         type={type}
         name={name}

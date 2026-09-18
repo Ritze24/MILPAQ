@@ -39,6 +39,7 @@ export function SimpleLeadForm({
       {fields.map((field) => (
         <label key={field.name} className="block text-sm font-medium text-milpaq-dark">
           {field.label}
+          {field.required && <span className="text-red-600"> *</span>}
           {field.type === "select" ? (
             <select
               name={field.name}

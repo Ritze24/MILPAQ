@@ -22,8 +22,16 @@ function formatDate(date: string) {
   });
 }
 
-export default async function BlogPage() {
-  const { posts } = isBlogConfigured ? await getPosts() : { posts: [] };
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string }>;
+}) {
+  const { category: categorySlug } = await searchParams;
+  const { posts } = isBlogConfigured ? await getPosts({ categorySlug }) : { posts: [] };
+  const activeCategory = categorySlug
+    ? blogCategories.find((c) => c.slug === categorySlug)
+    : undefined;
 
   return (
     <>
@@ -37,15 +45,30 @@ export default async function BlogPage() {
       {posts.length > 0 ? (
         <>
           <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-14">
+            {categorySlug && (
+              <div className="mb-8 flex flex-wrap items-center gap-3">
+                <p className="text-sm text-milpaq-dark/70">
+                  Showing posts in:{" "}
+                  <span className="font-semibold text-milpaq-dark">
+                    {activeCategory?.name ?? categorySlug}
+                  </span>
+                </p>
+                <Link
+                  href="/blog"
+                  className="rounded-full border border-milpaq-border px-3 py-1 text-xs font-medium text-milpaq-dark/70 hover:border-milpaq-olive hover:text-milpaq-olive"
+                >
+                  Clear filter ×
+                </Link>
+              </div>
+            )}
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {posts.map((post) => (
-                <Link
+                <div
                   key={post.id}
-                  href={`/blog/${post.slug}`}
                   className="group overflow-hidden rounded-lg border border-milpaq-border bg-white transition-shadow hover:shadow-md"
                 >
                   {post.featuredImage && (
-                    <div className="relative aspect-[16/10] w-full overflow-hidden">
+                    <Link href={`/blog/${post.slug}`} className="relative block aspect-[16/10] w-full overflow-hidden">
                       <Image
                         src={post.featuredImage.url}
                         alt={post.featuredImage.alt}
@@ -53,27 +76,30 @@ export default async function BlogPage() {
                         sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                    </div>
+                    </Link>
                   )}
                   <div className="p-6">
                     {post.categories[0] && (
-                      <p className="text-xs font-semibold uppercase tracking-wide text-milpaq-sage">
+                      <Link
+                        href={`/blog?category=${post.categories[0].slug}`}
+                        className="inline-block text-xs font-semibold uppercase tracking-wide text-milpaq-sage hover:underline"
+                      >
                         {post.categories[0].name}
-                      </p>
+                      </Link>
                     )}
-                    <h3
-                      className="font-display mt-2 text-lg font-semibold text-milpaq-dark group-hover:text-milpaq-olive"
-                      dangerouslySetInnerHTML={{ __html: post.title }}
-                    />
-                    <div
-                      className="mt-2 line-clamp-3 text-sm text-milpaq-dark/70 [&_p]:inline"
+                    <h3 className="font-display mt-2 text-lg font-semibold text-milpaq-dark group-hover:text-milpaq-olive">
+                      <Link href={`/blog/${post.slug}`} dangerouslySetInnerHTML={{ __html: post.title }} />
+                    </h3>
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="mt-2 line-clamp-3 block text-sm text-milpaq-dark/70 [&_p]:inline"
                       dangerouslySetInnerHTML={{ __html: post.excerpt }}
                     />
                     <p className="mt-4 text-xs text-milpaq-dark/50">
                       {AUTHOR_NAME} · {formatDate(post.date)}
                     </p>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           </section>
@@ -84,6 +110,19 @@ export default async function BlogPage() {
             ctaHref="/oem-partnership"
           />
         </>
+      ) : categorySlug ? (
+        <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-14">
+          <p className="text-sm text-milpaq-dark/70">
+            No posts yet in{" "}
+            <span className="font-semibold text-milpaq-dark">
+              {activeCategory?.name ?? categorySlug}
+            </span>
+            .{" "}
+            <Link href="/blog" className="font-medium text-milpaq-olive hover:underline">
+              View all posts
+            </Link>
+          </p>
+        </section>
       ) : (
         <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-14">
           <div className="grid gap-6 sm:grid-cols-2">

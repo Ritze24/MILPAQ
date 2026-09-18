@@ -97,11 +97,27 @@ export default async function BlogPostPage({
             {minutes} min read
           </span>
           {primaryCategory && (
-            <span className="rounded-full bg-milpaq-tan-light px-3 py-1 text-xs font-semibold uppercase tracking-wide text-milpaq-olive">
+            <Link
+              href={`/blog?category=${primaryCategory.slug}`}
+              className="rounded-full bg-milpaq-tan-light px-3 py-1 text-xs font-semibold uppercase tracking-wide text-milpaq-olive hover:bg-milpaq-tan"
+            >
               {primaryCategory.name}
-            </span>
+            </Link>
           )}
         </div>
+
+        {post.featuredImage && (
+          <div className="relative mt-8 aspect-[16/9] w-full overflow-hidden rounded-lg">
+            <Image
+              src={post.featuredImage.url}
+              alt={post.featuredImage.alt}
+              fill
+              sizes="(min-width: 768px) 48rem, 100vw"
+              className="object-cover"
+              priority
+            />
+          </div>
+        )}
 
         <div
           className="mt-8 space-y-5 text-milpaq-dark/90
@@ -185,13 +201,12 @@ export default async function BlogPostPage({
             <h2 className="font-display text-2xl font-bold text-milpaq-dark">Related Blogs</h2>
             <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((r) => (
-                <Link
+                <div
                   key={r.id}
-                  href={`/blog/${r.slug}`}
                   className="group overflow-hidden rounded-lg border border-milpaq-border bg-white transition-shadow hover:shadow-md"
                 >
                   {r.featuredImage && (
-                    <div className="relative aspect-[16/10] w-full overflow-hidden">
+                    <Link href={`/blog/${r.slug}`} className="relative block aspect-[16/10] w-full overflow-hidden">
                       <Image
                         src={r.featuredImage.url}
                         alt={r.featuredImage.alt}
@@ -199,23 +214,25 @@ export default async function BlogPostPage({
                         sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                    </div>
+                    </Link>
                   )}
                   <div className="p-6">
                     {r.categories[0] && (
-                      <p className="text-xs font-semibold uppercase tracking-wide text-milpaq-sage">
+                      <Link
+                        href={`/blog?category=${r.categories[0].slug}`}
+                        className="inline-block text-xs font-semibold uppercase tracking-wide text-milpaq-sage hover:underline"
+                      >
                         {r.categories[0].name}
-                      </p>
+                      </Link>
                     )}
-                    <h3
-                      className="font-display mt-2 text-lg font-semibold text-milpaq-dark group-hover:text-milpaq-olive"
-                      dangerouslySetInnerHTML={{ __html: r.title }}
-                    />
+                    <h3 className="font-display mt-2 text-lg font-semibold text-milpaq-dark group-hover:text-milpaq-olive">
+                      <Link href={`/blog/${r.slug}`} dangerouslySetInnerHTML={{ __html: r.title }} />
+                    </h3>
                     <p className="mt-4 text-xs text-milpaq-dark/50">
                       {AUTHOR_NAME} · {formatDate(r.date)}
                     </p>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           </div>

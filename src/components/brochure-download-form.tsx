@@ -79,7 +79,7 @@ export function BrochureDownloadForm({ triggerClassName }: { triggerClassName?: 
             </DialogHeader>
             <form onSubmit={handleSubmit} className="mt-2 space-y-4">
               <label className="block text-sm font-medium text-milpaq-dark">
-                Full Name
+                Full Name <span className="text-red-600">*</span>
                 <input
                   type="text"
                   name="name"
@@ -88,7 +88,7 @@ export function BrochureDownloadForm({ triggerClassName }: { triggerClassName?: 
                 />
               </label>
               <label className="block text-sm font-medium text-milpaq-dark">
-                Company Name
+                Company Name <span className="text-red-600">*</span>
                 <input
                   type="text"
                   name="company"
@@ -97,7 +97,7 @@ export function BrochureDownloadForm({ triggerClassName }: { triggerClassName?: 
                 />
               </label>
               <label className="block text-sm font-medium text-milpaq-dark">
-                Email
+                Email <span className="text-red-600">*</span>
                 <input
                   type="email"
                   name="email"
@@ -106,7 +106,7 @@ export function BrochureDownloadForm({ triggerClassName }: { triggerClassName?: 
                 />
               </label>
               <label className="block text-sm font-medium text-milpaq-dark">
-                Phone
+                Phone <span className="text-red-600">*</span>
                 <input
                   type="tel"
                   name="phone"
