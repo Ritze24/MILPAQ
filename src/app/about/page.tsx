@@ -144,27 +144,29 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:py-14 sm:px-6">
-        <div className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
-            Certifications &amp; Registrations
-          </p>
-          <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-milpaq-dark sm:text-4xl">
-            Credentials
-          </h2>
-        </div>
-        <div className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
-          {credentials.map(({ label, image }) => (
-            <div key={label} className="relative h-16 w-full sm:h-20">
-              <Image
-                src={image}
-                alt={label}
-                fill
-                sizes="(min-width: 1024px) 200px, (min-width: 640px) 33vw, 50vw"
-                className="object-contain"
-              />
-            </div>
-          ))}
+      <section className="bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:py-14 sm:px-6">
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-milpaq-sage">
+              Certifications &amp; Registrations
+            </p>
+            <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-milpaq-dark sm:text-4xl">
+              Credentials
+            </h2>
+          </div>
+          <div className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
+            {credentials.map(({ label, image }) => (
+              <div key={label} className="relative h-16 w-full sm:h-20">
+                <Image
+                  src={image}
+                  alt={label}
+                  fill
+                  sizes="(min-width: 1024px) 200px, (min-width: 640px) 33vw, 50vw"
+                  className="object-contain"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
