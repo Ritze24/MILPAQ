@@ -4,7 +4,7 @@ import nodemailer from "nodemailer";
 // SMTP_USER / SMTP_PASS are set as environment variables on the Hostinger
 // Web App (never committed). FORMS_TO (comma-separated) overrides recipients.
 export const FORMS_TO =
-  process.env.FORMS_TO || "milpaq@305aerosupplies.com, info@milpaq.com";
+  process.env.FORMS_TO || "milpaq@305aerosupplies.com";
 
 export function isMailerConfigured() {
   return Boolean(process.env.SMTP_USER && process.env.SMTP_PASS);
