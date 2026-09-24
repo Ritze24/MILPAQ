@@ -10,6 +10,8 @@ import {
   DialogDescription,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { FormHoneypot } from "@/components/form-honeypot";
+import { submitForm } from "@/lib/submit-form";
 
 const BROCHURE_URL = "/downloads/milpaq-brochure.pdf";
 
@@ -26,6 +28,9 @@ export function BrochureDownloadForm({ triggerClassName }: { triggerClassName?: 
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    // Lead is emailed to the MILPAQ inboxes in the background; the download
+    // starts regardless so a mail hiccup never blocks the visitor.
+    void submitForm(event.currentTarget, "brochure");
     setSubmitted(true);
   }
 
@@ -77,7 +82,8 @@ export function BrochureDownloadForm({ triggerClassName }: { triggerClassName?: 
                 Tell us a bit about you and the download will start right away.
               </DialogDescription>
             </DialogHeader>
-            <form onSubmit={handleSubmit} className="mt-2 space-y-4">
+            <form onSubmit={handleSubmit} className="relative mt-2 space-y-4">
+              <FormHoneypot />
               <label className="block text-sm font-medium text-milpaq-dark">
                 Full Name <span className="text-red-600">*</span>
                 <input

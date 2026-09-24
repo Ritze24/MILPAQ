@@ -55,6 +55,10 @@ export default function TermsOfServicePage() {
                 Questions about these Terms & Conditions? Contact {company.legalName} at{" "}
                 <a href={company.phoneHref} className="font-medium text-milpaq-olive hover:underline">
                   {company.phone}
+                </a>{" "}
+                or{" "}
+                <a href={`mailto:${company.email}`} className="font-medium text-milpaq-olive hover:underline">
+                  {company.email}
                 </a>
                 .
               </p>

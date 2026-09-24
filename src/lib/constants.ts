@@ -13,6 +13,7 @@ export const company = {
   },
   phone: "786-807-4466",
   phoneHref: "tel:+17868074466",
+  email: "milpaq@305aerosupplies.com",
   cageCode: "97PC9",
   domain: "milpaq.com",
 };

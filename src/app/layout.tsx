@@ -50,6 +50,7 @@ const organizationJsonLd = {
   legalName: company.legalName,
   url: siteUrl,
   telephone: company.phone,
+  email: company.email,
   address: {
     "@type": "PostalAddress",
     streetAddress: company.address.line1,

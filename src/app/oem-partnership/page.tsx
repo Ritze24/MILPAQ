@@ -166,6 +166,7 @@ export default function OemPartnershipPage() {
           </h2>
           <div className="mt-8">
             <SimpleLeadForm
+              formName="oem-partnership"
               submitLabel="Schedule Discovery Call"
               confirmationTitle="Request received"
               confirmationMessage="MILPAQ will reach out to schedule your discovery call."

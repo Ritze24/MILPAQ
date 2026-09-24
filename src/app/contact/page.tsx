@@ -6,6 +6,7 @@ import { BrochureDownloadForm } from "@/components/brochure-download-form";
 import { company } from "@/lib/constants";
 import {
   IconPhone,
+  IconMail,
   IconMapPin,
   IconCertificate,
   IconMessage,
@@ -46,6 +47,7 @@ export default function ContactPage() {
             </div>
             <div className="mt-6">
               <SimpleLeadForm
+                formName="contact"
                 submitLabel="Send Message"
                 confirmationTitle="Message received"
                 confirmationMessage="Thank you for reaching out. MILPAQ will respond shortly."
@@ -78,6 +80,12 @@ export default function ContactPage() {
                   <IconPhone className="h-5 w-5 shrink-0 stroke-current fill-none text-milpaq-olive" />
                   <a href={company.phoneHref} className="text-sm text-milpaq-dark/80 hover:text-milpaq-olive">
                     {company.phone}
+                  </a>
+                </li>
+                <li className="flex gap-3">
+                  <IconMail className="h-5 w-5 shrink-0 stroke-current fill-none text-milpaq-olive" />
+                  <a href={`mailto:${company.email}`} className="break-all text-sm text-milpaq-dark/80 hover:text-milpaq-olive">
+                    {company.email}
                   </a>
                 </li>
                 <li className="flex gap-3">

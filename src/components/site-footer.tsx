@@ -66,6 +66,11 @@ export function SiteFooter() {
                 </a>
               </li>
               <li>
+                <a href={`mailto:${company.email}`} className="break-all hover:text-white">
+                  {company.email}
+                </a>
+              </li>
+              <li>
                 {company.address.line1}
                 <br />
                 {company.address.city}, {company.address.state} {company.address.zip}

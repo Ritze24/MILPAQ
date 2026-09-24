@@ -162,6 +162,7 @@ export default function StrategicGrowthRetainerPage() {
           <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_20rem]">
             <div>
               <SimpleLeadForm
+                formName="strategic-growth-retainer"
                 submitLabel="Apply Now"
                 confirmationTitle="Application received"
                 confirmationMessage="MILPAQ will review your application and follow up to schedule a discovery call."

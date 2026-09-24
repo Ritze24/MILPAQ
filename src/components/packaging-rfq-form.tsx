@@ -2,17 +2,26 @@
 
 import { useState, type FormEvent } from "react";
 import { company } from "@/lib/constants";
+import { FormHoneypot } from "@/components/form-honeypot";
+import { submitForm } from "@/lib/submit-form";
 
 export function PackagingRfqForm() {
   const [originInspection, setOriginInspection] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  // Intake is UI-only until MILPAQ provides Monday.com/email credentials for
-  // Phase 1 automation (see RFQ Workflow Step 3: quote sits unautomated in a
-  // review queue until the client pays — no CRM/job record is created here).
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  // Submissions (including the uploaded contract) are emailed to the
+  // MILPAQ inboxes via /api/forms. Monday.com automation for Phase 1 is
+  // still pending — no CRM/job record is created here yet.
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setError(null);
+    const result = await submitForm(event.currentTarget, "packaging-rfq");
+    setSubmitting(false);
+    if (result) setError(result);
+    else setSubmitted(true);
   }
 
   if (submitted) {
@@ -31,7 +40,7 @@ export function PackagingRfqForm() {
     <form
       id="quote"
       onSubmit={handleSubmit}
-      className="space-y-8 rounded-lg border border-milpaq-tan bg-white p-8"
+      className="relative space-y-8 rounded-lg border border-milpaq-tan bg-white p-8"
     >
       <div>
         <h3 className="font-display text-lg font-semibold text-milpaq-dark">1. Company Information</h3>
@@ -53,6 +62,7 @@ export function PackagingRfqForm() {
             type="file"
             name="contractFile"
             required
+            accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.zip"
             className="mt-2 block w-full text-sm text-milpaq-dark/80 file:mr-4 file:rounded-md file:border-0 file:bg-milpaq-olive file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white"
           />
         </div>
@@ -110,11 +120,18 @@ export function PackagingRfqForm() {
         </label>
       </div>
 
+      <FormHoneypot />
+      {error && (
+        <p role="alert" className="text-sm text-red-700">
+          {error}
+        </p>
+      )}
       <button
         type="submit"
-        className="w-full rounded-md bg-milpaq-olive px-6 py-3 text-sm font-semibold text-white hover:bg-milpaq-olive-dark sm:w-auto"
+        disabled={submitting}
+        className="w-full rounded-md bg-milpaq-olive px-6 py-3 text-sm font-semibold text-white hover:bg-milpaq-olive-dark disabled:opacity-60 sm:w-auto"
       >
-        Submit Quote Request
+        {submitting ? "Sending…" : "Submit Quote Request"}
       </button>
     </form>
   );
