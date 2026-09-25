@@ -75,4 +75,4 @@ Before 2026-09-24 the forms were display-only and discarded submissions. Monday.
 ## Notes
 
 - This project pins a newer Next.js version than may be reflected in general documentation/training data — see `AGENTS.md` for details, and check `node_modules/next/dist/docs/` for the installed version's docs before relying on prior Next.js knowledge.
-- Blog content is sourced from a headless WordPress instance (see `src/lib/wordpress.ts`).
+- Blog content is sourced from a headless WordPress instance (see `src/lib/wordpress.ts`). Posts can be filtered with `/blog?category=<slug>` or `/blog?tag=<slug>`; post tags link to the tag filter, and the share row's copy-link button is `src/components/copy-link-button.tsx`.
