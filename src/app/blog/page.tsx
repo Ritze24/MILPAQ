@@ -25,13 +25,22 @@ function formatDate(date: string) {
 export default async function BlogPage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string }>;
+  searchParams: Promise<{ category?: string; tag?: string }>;
 }) {
-  const { category: categorySlug } = await searchParams;
-  const { posts } = isBlogConfigured ? await getPosts({ categorySlug }) : { posts: [] };
+  const { category: categorySlug, tag: tagSlug } = await searchParams;
+  const { posts } = isBlogConfigured
+    ? await getPosts({ categorySlug, tagSlug })
+    : { posts: [] };
   const activeCategory = categorySlug
     ? blogCategories.find((c) => c.slug === categorySlug)
     : undefined;
+  // A tag filter takes precedence over category. Tags aren't in the static
+  // category list, so take the display name from the matched posts.
+  const filterLabel = tagSlug
+    ? (posts[0]?.tags.find((t) => t.slug === tagSlug)?.name ?? tagSlug.replace(/-/g, " "))
+    : categorySlug
+      ? (activeCategory?.name ?? categorySlug)
+      : undefined;
 
   return (
     <>
@@ -45,13 +54,11 @@ export default async function BlogPage({
       {posts.length > 0 ? (
         <>
           <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-14">
-            {categorySlug && (
+            {filterLabel && (
               <div className="mb-8 flex flex-wrap items-center gap-3">
                 <p className="text-sm text-milpaq-dark/70">
-                  Showing posts in:{" "}
-                  <span className="font-semibold text-milpaq-dark">
-                    {activeCategory?.name ?? categorySlug}
-                  </span>
+                  {tagSlug ? "Showing posts tagged:" : "Showing posts in:"}{" "}
+                  <span className="font-semibold text-milpaq-dark">{filterLabel}</span>
                 </p>
                 <Link
                   href="/blog"
@@ -110,13 +117,11 @@ export default async function BlogPage({
             ctaHref="/oem-partnership"
           />
         </>
-      ) : categorySlug ? (
+      ) : filterLabel ? (
         <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-14">
           <p className="text-sm text-milpaq-dark/70">
-            No posts yet in{" "}
-            <span className="font-semibold text-milpaq-dark">
-              {activeCategory?.name ?? categorySlug}
-            </span>
+            {tagSlug ? "No posts found tagged" : "No posts yet in"}{" "}
+            <span className="font-semibold text-milpaq-dark">{filterLabel}</span>
             .{" "}
             <Link href="/blog" className="font-medium text-milpaq-olive hover:underline">
               View all posts

@@ -95,7 +95,8 @@ export async function getPosts({
   page = 1,
   perPage = 12,
   categorySlug,
-}: { page?: number; perPage?: number; categorySlug?: string } = {}): Promise<PostsPage> {
+  tagSlug,
+}: { page?: number; perPage?: number; categorySlug?: string; tagSlug?: string } = {}): Promise<PostsPage> {
   if (!apiUrl) return { posts: [], totalPages: 0 };
 
   try {
@@ -116,6 +117,17 @@ export async function getPosts({
         const matches = (await categoryRes.json()) as { id: number }[];
         if (matches[0]) params.set("categories", String(matches[0].id));
       }
+    }
+
+    if (tagSlug) {
+      const tagRes = await fetch(
+        `${apiUrl}/wp-json/wp/v2/tags?slug=${encodeURIComponent(tagSlug)}`,
+        { next: { revalidate: 120 } }
+      );
+      const matches = tagRes.ok ? ((await tagRes.json()) as { id: number }[]) : [];
+      // Unknown tag → no posts (rather than silently listing everything).
+      if (!matches[0]) return { posts: [], totalPages: 0 };
+      params.set("tags", String(matches[0].id));
     }
 
     const res = await fetch(`${apiUrl}/wp-json/wp/v2/posts?${params}`, {

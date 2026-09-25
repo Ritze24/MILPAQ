@@ -4,11 +4,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/page-hero";
 import { CtaBand } from "@/components/cta-band";
+import { CopyLinkButton } from "@/components/copy-link-button";
 import {
   IconClock,
   IconUser,
   IconTag,
-  IconLink,
   IconMail,
   IconLinkedIn,
   IconTwitterX,
@@ -139,12 +139,13 @@ export default async function BlogPostPage({
           <div className="mt-10 flex flex-wrap items-center gap-2 border-t border-milpaq-border pt-6">
             <IconTag className="h-4 w-4 stroke-current fill-none text-milpaq-dark/50" />
             {post.tags.map((tag) => (
-              <span
+              <Link
                 key={tag.slug}
-                className="rounded-full border border-milpaq-border px-3 py-1 text-xs font-medium text-milpaq-dark/70"
+                href={`/blog?tag=${encodeURIComponent(tag.slug)}`}
+                className="rounded-full border border-milpaq-border px-3 py-1 text-xs font-medium text-milpaq-dark/70 hover:border-milpaq-olive hover:text-milpaq-olive"
               >
                 {tag.name}
-              </span>
+              </Link>
             ))}
           </div>
         )}
@@ -185,13 +186,7 @@ export default async function BlogPostPage({
           >
             <IconMail className="h-4 w-4 stroke-current fill-none" />
           </a>
-          <a
-            href={postUrl}
-            aria-label="Copy link"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-milpaq-border text-milpaq-dark/70 hover:border-milpaq-olive hover:text-milpaq-olive"
-          >
-            <IconLink className="h-4 w-4 stroke-current fill-none" />
-          </a>
+          <CopyLinkButton url={postUrl} />
         </div>
       </article>
 
