@@ -41,6 +41,9 @@ export const metadata: Metadata = {
     title: `${company.name} | ${company.tagline}`,
     description,
   },
+  verification: {
+    google: "rbpus-UQHdJcr0UbSrQB-SxEGPXSz0NiyItMKl9cYN8",
+  },
 };
 
 const organizationJsonLd = {
