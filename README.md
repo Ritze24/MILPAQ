@@ -65,12 +65,15 @@ Key routes: `/about`, `/services` (+ subpages for military packaging, DCMA origi
 | `SMTP_USER` / `SMTP_PASS` | Hostinger mailbox used to **send** form emails (`noreply@milpaq.com`) |
 | `SMTP_HOST` / `SMTP_PORT` | Optional; default `smtp.hostinger.com` / `465` |
 | `FORMS_TO` | Optional; comma-separated recipients, default `milpaq@305aerosupplies.com` |
+| `MONDAY_API_TOKEN` | Monday.com API token; copies form submissions to the boards in `src/lib/monday-config.ts` (forms without a board ID are skipped) |
 
 ## Form submissions
 
 All lead forms (contact, OEM partnership, strategic growth retainer, packaging RFQ with file upload, brochure download) POST to `src/app/api/forms/route.ts`, which emails them via SMTP (`src/lib/mailer.ts`) to **milpaq@305aerosupplies.com** only, with Reply-To set to the visitor. Includes a honeypot spam field and a 10 MB attachment limit. If SMTP isn't configured the API returns 503 and visitors are told to email directly — submissions are never silently dropped.
 
-Before 2026-09-24 the forms were display-only and discarded submissions. Monday.com automation for the RFQ workflow is still pending.
+Before 2026-09-24 the forms were display-only and discarded submissions.
+
+**Monday.com:** the same route also creates an item on the form's Monday board (`src/lib/monday.ts`, mapping in `src/lib/monday-config.ts`). It runs alongside the email, never blocks or fails the visitor's submission, and logs `[monday]` errors to the server log. Currently enabled for the Contact form only; the other forms switch on once their board and column IDs are filled in.
 
 ## Notes
 

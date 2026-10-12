@@ -1,4 +1,5 @@
 import { FORMS_TO, getTransport, isMailerConfigured } from "@/lib/mailer";
+import { pushToMonday } from "@/lib/monday";
 
 const FORM_NAMES: Record<string, string> = {
   contact: "Contact Form",
@@ -68,7 +69,12 @@ export async function POST(request: Request) {
     }
   }
 
+  // Copy the submission to its Monday.com board in parallel with the email.
+  // pushToMonday never throws and is a no-op for forms without a board.
+  const mondaySync = pushToMonday(String(data.get("formName")), data);
+
   if (!isMailerConfigured()) {
+    await mondaySync;
     console.error("[forms] SMTP_USER/SMTP_PASS not set; submission not sent:", formLabel);
     return Response.json(
       { error: "We couldn't send your submission right now. Please email milpaq@305aerosupplies.com directly." },
@@ -92,6 +98,7 @@ export async function POST(request: Request) {
       attachments,
     });
   } catch (error) {
+    await mondaySync;
     console.error("[forms] Failed to send submission:", formLabel, error);
     return Response.json(
       { error: "We couldn't send your submission right now. Please email milpaq@305aerosupplies.com directly." },
@@ -99,5 +106,6 @@ export async function POST(request: Request) {
     );
   }
 
+  await mondaySync;
   return Response.json({ ok: true });
 }
