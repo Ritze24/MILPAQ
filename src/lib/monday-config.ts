@@ -37,7 +37,7 @@ export const MONDAY_BOARDS: Record<string, MondayBoardConfig> = {
     columns: [
       { field: "company", columnId: "text_mm82y91m", kind: "text" }, // Company
       { field: "email", columnId: "text_mm82x1hv", kind: "text" }, // Email Address (Text column)
-      { field: "phone", columnId: "", kind: "text" }, // Phone Number (Text column) — ID to confirm
+      { field: "phone", columnId: "text_mm82t03", kind: "text" }, // Phone Number (Text column)
       { field: "message", columnId: "long_text_mm82w3pc", kind: "longText" }, // Message
       { value: "New", columnId: "", kind: "status" }, // Lead Status — ID pending
     ],

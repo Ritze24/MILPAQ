@@ -118,7 +118,9 @@ export async function pushToMonday(formName: string, data: FormData): Promise<vo
     console.error(`[monday] create_item failed for ${formName}; retrying without phone:`, error);
     // A malformed phone number is the most common rejection — retry without it
     // so the lead is still captured.
-    const phoneIds = new Set(mapped.filter((m) => m.kind === "phone").map((m) => m.columnId));
+    const phoneIds = new Set(
+      mapped.filter((m) => m.kind === "phone" || ("field" in m && m.field === "phone")).map((m) => m.columnId),
+    );
     const fallback = Object.fromEntries(Object.entries(columns).filter(([id]) => !phoneIds.has(id)));
     try {
       itemId = await createItem(board.boardId, itemName, fallback);
