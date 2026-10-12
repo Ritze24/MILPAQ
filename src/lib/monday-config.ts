@@ -40,6 +40,15 @@ export const MONDAY_BOARDS: Record<string, MondayBoardConfig> = {
       { field: "phone", columnId: "text_mm82t03", kind: "text" }, // Phone Number (Text column)
       { field: "message", columnId: "long_text_mm82w3pc", kind: "longText" }, // Message
       { value: "New", columnId: "color_mm8234am", kind: "status" }, // Lead Status
+      // Marketing attribution — fill in column IDs once the columns exist.
+      { field: "utm_source", columnId: "", kind: "text" }, // UTM Source
+      { field: "utm_medium", columnId: "", kind: "text" }, // UTM Medium
+      { field: "utm_campaign", columnId: "", kind: "text" }, // UTM Campaign
+      { field: "utm_term", columnId: "", kind: "text" }, // UTM Term
+      { field: "utm_content", columnId: "", kind: "text" }, // UTM Content
+      { field: "gclid", columnId: "", kind: "text" }, // GCLID (Google Ads click ID)
+      { field: "landing_page", columnId: "", kind: "text" }, // Landing Page
+      { field: "referrer", columnId: "", kind: "text" }, // Referrer
     ],
   },
 

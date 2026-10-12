@@ -15,7 +15,22 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // Internal fields that are never included in the email body.
 const RESERVED_FIELDS = new Set(["formName", "website"]);
 
+// Friendlier email labels for the attribution fields added by submitForm().
+const FIELD_LABELS: Record<string, string> = {
+  utm_source: "UTM Source",
+  utm_medium: "UTM Medium",
+  utm_campaign: "UTM Campaign",
+  utm_term: "UTM Term",
+  utm_content: "UTM Content",
+  gclid: "Google Ads Click ID",
+  fbclid: "Facebook Click ID",
+  msclkid: "Microsoft Ads Click ID",
+  landing_page: "Landing Page",
+  referrer: "Referrer",
+};
+
 function humanize(name: string) {
+  if (FIELD_LABELS[name]) return FIELD_LABELS[name];
   const spaced = name.replace(/([a-z0-9])([A-Z])/g, "$1 $2").replace(/[_-]+/g, " ");
   return spaced.charAt(0).toUpperCase() + spaced.slice(1);
 }

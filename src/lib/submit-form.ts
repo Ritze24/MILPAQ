@@ -1,3 +1,4 @@
+import { getAttribution } from "@/lib/attribution";
 import { pushToDataLayer } from "@/lib/gtm";
 
 // Posts a form to /api/forms, which emails it to the MILPAQ inboxes.
@@ -8,6 +9,9 @@ import { pushToDataLayer } from "@/lib/gtm";
 export async function submitForm(form: HTMLFormElement, formName: string): Promise<string | null> {
   const data = new FormData(form);
   data.set("formName", formName);
+  for (const [key, value] of Object.entries(getAttribution())) {
+    if (value) data.set(key, value);
+  }
 
   try {
     const res = await fetch("/api/forms", { method: "POST", body: data });
