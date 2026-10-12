@@ -35,11 +35,11 @@ export const MONDAY_BOARDS: Record<string, MondayBoardConfig> = {
     boardId: "18435051122", // MILPAQ - CONTACT
     itemName: ["name"],
     columns: [
-      { field: "company", columnId: "", kind: "text" }, // Company
-      { field: "email", columnId: "", kind: "email" }, // Email Address
-      { field: "phone", columnId: "", kind: "phone" }, // Phone Number
-      { field: "message", columnId: "", kind: "longText" }, // Message
-      { value: "New", columnId: "", kind: "status" }, // Lead Status
+      { field: "company", columnId: "text_mm82y91m", kind: "text" }, // Company
+      { field: "email", columnId: "text_mm82x1hv", kind: "text" }, // Email Address (Text column)
+      { field: "phone", columnId: "", kind: "text" }, // Phone Number (Text column) — ID to confirm
+      { field: "message", columnId: "long_text_mm82w3pc", kind: "longText" }, // Message
+      { value: "New", columnId: "", kind: "status" }, // Lead Status — ID pending
     ],
   },
 
