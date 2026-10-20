@@ -1,0 +1,253 @@
+openapi: 3.0.3
+info:
+  title: MILPAQ Partner API
+  version: 1.0.0-draft
+  description: |
+    Server-to-server API for submitting packaging quote requests to MILPAQ and
+    receiving status updates and the finished quote. Quote preparation is a human
+    step performed by the MILPAQ team, so expect hours or days, not seconds.
+
+    **Environments.** One base URL; the API key prefix selects the environment.
+    `mpq_test_…` keys use the sandbox (isolated data, no MILPAQ staff involved, scripted
+    status changes). `mpq_live_…` keys use production. A key only ever works in its own environment.
+
+    **Never call this API from a browser.** Keys and webhook secrets belong on your backend only.
+
+    ## Webhooks
+    MILPAQ POSTs JSON to the HTTPS URL registered for your environment. Headers:
+
+    | Header | Meaning |
+    | --- | --- |
+    | `MILPAQ-Delivery-Id` | Unique per delivery. Process each ID once. |
+    | `MILPAQ-Event` | `quote_request.updated` |
+    | `MILPAQ-Timestamp` | Unix seconds when this attempt was sent |
+    | `MILPAQ-Signature` | `v1=<hex>` (comma-separated `v1=` values while a secret rotation is in progress) |
+
+    `signature = HMAC-SHA256(webhook_secret, MILPAQ-Timestamp + "." + raw_request_body)`.
+    Verify against the raw body bytes, reject timestamps more than 5 minutes old, and accept
+    any one matching `v1=` value. Return a 2xx only after the event is durably recorded; any
+    other response (or a timeout over 10 s) is retried with backoff at 1 min, 5 min, 15 min,
+    1 h, 3 h, 6 h and 12 h (8 attempts, about 22 hours), then the delivery is abandoned.
+    Redirects are not followed. Ordering is not guaranteed: use `occurred_at` and the status
+    endpoint to resolve the current state.
+servers:
+  - url: https://milpaq.com/api
+security:
+  - ApiKey: []
+paths:
+  /v1/quote-requests:
+    post:
+      summary: Submit a quote request
+      description: |
+        `multipart/form-data` with a `metadata` part (JSON) and a `solicitation_pdf` part
+        (PDF, at most 10 MB, validated by file content). `Idempotency-Key` must equal
+        `metadata.external_request_id`. Repeating a request with the same key and identical
+        content returns the original request (HTTP 200, `Idempotent-Replayed: true`); the same
+        key with different content returns 409. Limit: 20 submissions per minute per key.
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          required: true
+          schema: { type: string, maxLength: 64 }
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [metadata, solicitation_pdf]
+              properties:
+                metadata: { $ref: '#/components/schemas/Metadata' }
+                solicitation_pdf: { type: string, format: binary }
+            encoding:
+              metadata: { contentType: application/json }
+              solicitation_pdf: { contentType: application/pdf }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/Submitted' } } } }
+        '200': { description: Idempotent replay of an earlier identical submission, content: { application/json: { schema: { $ref: '#/components/schemas/Submitted' } } } }
+        '400': { $ref: '#/components/responses/Error' }
+        '401': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+        '413': { $ref: '#/components/responses/Error' }
+        '422': { $ref: '#/components/responses/Error' }
+        '429': { $ref: '#/components/responses/Error' }
+        '503': { $ref: '#/components/responses/Error' }
+  /v1/quote-requests/{request_id}:
+    get:
+      summary: Get a quote request
+      description: Current status. When `quote_completed`, includes the quote and a freshly signed document URL on every call (60 requests per minute per key).
+      parameters:
+        - { in: path, name: request_id, required: true, schema: { type: string } }
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/RequestView' } } } }
+        '401': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+        '429': { $ref: '#/components/responses/Error' }
+  /v1/quote-requests/{request_id}/messages:
+    post:
+      summary: Reply to an information request
+      description: |
+        Only valid while the status is `additional_information_required`; otherwise 409
+        `invalid_state`. On success the status returns to `under_review` and a webhook is sent.
+        Send JSON `{"message": "..."}` or multipart with `message` and up to 5 `attachments`
+        (PDF, PNG or JPEG, 10 MB total).
+      parameters:
+        - { in: path, name: request_id, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, required: [message], properties: { message: { type: string, maxLength: 5000 } } }
+          multipart/form-data:
+            schema:
+              type: object
+              required: [message]
+              properties:
+                message: { type: string, maxLength: 5000 }
+                attachments: { type: array, maxItems: 5, items: { type: string, format: binary } }
+      responses:
+        '201': { description: Accepted, content: { application/json: { schema: { $ref: '#/components/schemas/RequestView' } } } }
+        '401': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+        '422': { $ref: '#/components/responses/Error' }
+  /v1/documents/{token}:
+    get:
+      summary: Download a quote PDF
+      description: Expiring signed link from `quote.document.download_url` (valid 24 hours from when it was issued). No API key is needed; the token is the credential, so treat the URL as secret. After expiry fetch the request again for a new link.
+      security: []
+      parameters:
+        - { in: path, name: token, required: true, schema: { type: string } }
+      responses:
+        '200': { description: The PDF, content: { application/pdf: { schema: { type: string, format: binary } } } }
+        '404': { $ref: '#/components/responses/Error' }
+components:
+  securitySchemes:
+    ApiKey:
+      type: http
+      scheme: bearer
+      description: "`Authorization: Bearer mpq_test_…` or `mpq_live_…`"
+  responses:
+    Error:
+      description: |
+        Error. Codes: `invalid_request` (400), `unauthorized` (401), `not_found` (404),
+        `idempotency_conflict` (409), `invalid_state` (409), `payload_too_large` (413),
+        `validation_failed` (422, with `fields`), `rate_limited` (429, with `Retry-After`),
+        `internal_error` (500), `unavailable` (503). Retry 429, 500 and 503 with backoff,
+        reusing the same Idempotency-Key.
+      content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code: { type: string }
+            message: { type: string }
+            fields:
+              type: array
+              items:
+                type: object
+                properties:
+                  field: { type: string, example: packaging.unit_weight.value }
+                  code: { type: string, description: 'required, invalid_type, invalid_format, invalid_value, out_of_range, too_long, must_be_true, unsupported_version, invalid_json, too_large, mismatch' }
+                  message: { type: string }
+    Metadata:
+      type: object
+      required: [external_request_id, company, contact, solicitation, packaging, terms_acceptance]
+      properties:
+        external_request_id: { type: string, pattern: '^[A-Za-z0-9_.:-]{1,64}$' }
+        company: { type: object, required: [name], properties: { name: { type: string, maxLength: 200 } } }
+        contact:
+          type: object
+          required: [name, email, phone]
+          properties:
+            name: { type: string, maxLength: 120 }
+            email: { type: string, format: email }
+            phone: { type: string, description: 'At least 7 digits; digits, + ( ) - . and spaces only' }
+        solicitation: { type: object, required: [number], properties: { number: { type: string, maxLength: 60 } } }
+        packaging:
+          type: object
+          required: [number_of_units, unit_dimensions, unit_weight, source_origin_inspection_required, destination_inspection_required]
+          properties:
+            number_of_units: { type: integer, minimum: 1, maximum: 1000000 }
+            unit_dimensions:
+              type: object
+              required: [length, width, height, unit]
+              properties:
+                length: { type: number, exclusiveMinimum: 0 }
+                width: { type: number, exclusiveMinimum: 0 }
+                height: { type: number, exclusiveMinimum: 0 }
+                unit: { type: string, enum: [in, cm] }
+            unit_weight:
+              type: object
+              required: [value, unit]
+              properties:
+                value: { type: number, exclusiveMinimum: 0 }
+                unit: { type: string, enum: [lb, kg] }
+            source_origin_inspection_required: { type: boolean }
+            destination_inspection_required: { type: boolean }
+        additional_notes: { type: string, maxLength: 5000 }
+        terms_acceptance:
+          type: object
+          required: [accepted, version, accepted_at, accepted_by_user_id]
+          properties:
+            accepted: { type: boolean, enum: [true] }
+            version: { type: string, example: '1.0', description: 'Current MILPAQ Terms of Service version (https://milpaq.com/terms-of-service)' }
+            accepted_at: { type: string, format: date-time }
+            accepted_by_user_id: { type: string, maxLength: 128 }
+    Submitted:
+      type: object
+      properties:
+        request_id: { type: string, example: mpq_01JDEF456ABC… }
+        external_request_id: { type: string }
+        status: { $ref: '#/components/schemas/Status' }
+        received_at: { type: string, format: date-time }
+        validation_errors: { type: array, items: {}, description: Always empty on success; failures return 422. }
+    Status:
+      type: string
+      enum: [received, under_review, additional_information_required, quote_completed, declined, cancelled]
+    RequestView:
+      type: object
+      properties:
+        request_id: { type: string }
+        external_request_id: { type: string }
+        status: { $ref: '#/components/schemas/Status' }
+        received_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+        data:
+          type: object
+          description: '`message` when more information is required; `reason` when declined or cancelled.'
+          properties: { message: { type: string }, reason: { type: string } }
+        quote: { $ref: '#/components/schemas/Quote' }
+    Quote:
+      type: object
+      description: Present when status is quote_completed.
+      properties:
+        currency: { type: string, example: USD }
+        packaging_price: { type: number }
+        shipping_price: { type: number, nullable: true }
+        total_amount: { type: number }
+        quote_number: { type: string }
+        expires_at: { type: string, format: date-time }
+        document:
+          type: object
+          properties:
+            download_url: { type: string, format: uri }
+            expires_at: { type: string, format: date-time }
+            content_type: { type: string, example: application/pdf }
+            sha256: { type: string }
+        notes: { type: string, nullable: true }
+    WebhookEvent:
+      type: object
+      description: Body of every webhook delivery. `quote` is present for `quote_completed`.
+      properties:
+        event_id: { type: string }
+        event_type: { type: string, example: quote_request.updated }
+        occurred_at: { type: string, format: date-time }
+        request_id: { type: string }
+        external_request_id: { type: string }
+        status: { $ref: '#/components/schemas/Status' }
+        data: { type: object }
+        quote: { $ref: '#/components/schemas/Quote' }
