@@ -50,6 +50,12 @@ export function adminSecret(): string | null {
   return process.env.PARTNER_ADMIN_SECRET?.trim() || null;
 }
 
+// Shared password for the MILPAQ staff screen (/staff). Separate from the admin API secret.
+export function staffPassword(): string | null {
+  const value = process.env.PARTNER_STAFF_PASSWORD?.trim();
+  return value && value.length >= 12 ? value : null;
+}
+
 export function publicBaseUrl(): string {
   return (process.env.NEXT_PUBLIC_SITE_URL || "https://milpaq.com").replace(/\/+$/, "");
 }

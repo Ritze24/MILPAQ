@@ -1,7 +1,7 @@
 import { createCipheriv, createDecipheriv, hkdfSync, randomBytes } from "node:crypto";
 
 // One 32-byte master key (PARTNER_MASTER_KEY) yields independent sub-keys.
-export function deriveKey(master: Buffer, purpose: "secret-encryption" | "download-signing"): Buffer {
+export function deriveKey(master: Buffer, purpose: "secret-encryption" | "download-signing" | "staff-session"): Buffer {
   return Buffer.from(hkdfSync("sha256", master, Buffer.alloc(0), `milpaq-partner-api:${purpose}`, 32));
 }
 
