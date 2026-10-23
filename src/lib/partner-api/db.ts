@@ -62,7 +62,10 @@ async function migrate(pool: Pool): Promise<void> {
     const done = new Set((applied as { version: number }[]).map((r) => r.version));
     for (const m of MIGRATIONS) {
       if (done.has(m.version)) continue;
-      for (const sql of m.statements) await conn.query(sql);
+      for (const step of m.statements) {
+        if (typeof step === "string") await conn.query(step);
+        else await step(conn);
+      }
       await conn.query("INSERT INTO schema_migrations (version, applied_at) VALUES (?, ?)", [m.version, new Date()]);
     }
     await conn.query("SELECT RELEASE_LOCK('milpaq_partner_migrate')");

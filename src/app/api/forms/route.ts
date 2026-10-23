@@ -1,4 +1,7 @@
+import { after } from "next/server";
 import { FORMS_TO, getTransport, isMailerConfigured } from "@/lib/mailer";
+import { parseWebsiteRfq } from "@/lib/partner-api/website-rfq-parse";
+import { saveWebsiteRfq, type WebsiteUpload } from "@/lib/partner-api/website-rfq";
 
 const FORM_NAMES: Record<string, string> = {
   contact: "Contact Form",
@@ -45,6 +48,7 @@ export async function POST(request: Request) {
   const lines: string[] = [];
   const attachments: { filename: string; content: Buffer; contentType?: string }[] = [];
   let attachmentBytes = 0;
+  let contract: WebsiteUpload | null = null;
 
   for (const [key, value] of data.entries()) {
     if (RESERVED_FIELDS.has(key)) continue;
@@ -59,11 +63,13 @@ export async function POST(request: Request) {
           { status: 413 },
         );
       }
+      const content = Buffer.from(await value.arrayBuffer());
       attachments.push({
         filename: value.name || "attachment",
-        content: Buffer.from(await value.arrayBuffer()),
+        content,
         contentType: value.type || undefined,
       });
+      if (key === "contractFile") contract = { filename: value.name || "contract", bytes: content };
       lines.push(`${humanize(key)}: ${value.name} (attached)`);
     }
   }
@@ -97,6 +103,17 @@ export async function POST(request: Request) {
       { error: "We couldn't send your submission right now. Please email milpaq@305aerosupplies.com directly." },
       { status: 502 },
     );
+  }
+
+  // Packaging RFQs are also saved for the staff queue (/staff/quotes). This runs after
+  // the response so a database problem can never delay or fail the visitor's submission.
+  if (String(data.get("formName")) === "packaging-rfq") {
+    const rfq = parseWebsiteRfq(data);
+    const upload = contract;
+    after(async () => {
+      const result = await saveWebsiteRfq(rfq, upload);
+      if (!result.saved) console.error("[forms] RFQ was emailed but not saved to the staff queue:", result.reason);
+    });
   }
 
   return Response.json({ ok: true });

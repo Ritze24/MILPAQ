@@ -35,6 +35,7 @@ export type QuoteRequestRow = {
   idempotency_key: string;
   fingerprint: string;
   status: RequestStatus;
+  source: "partner" | "website";
   company_name: string;
   contact_name: string;
   contact_email: string;
@@ -256,7 +257,8 @@ export type StatusChange = {
   quotePdf?: { bytes: Uint8Array; filename: string };
 };
 
-async function applyStatusChange(conn: PoolConnection, env: ApiEnvironment, requestId: string, to: RequestStatus, change: StatusChange, quoteRelPath: string | null, now: Date) {
+// Returns the queued webhook delivery, or null for website requests (no partner to notify).
+async function applyStatusChange(conn: PoolConnection, env: ApiEnvironment, requestId: string, to: RequestStatus, change: StatusChange, quoteRelPath: string | null, now: Date): Promise<string | null> {
   const [current] = await rows<QuoteRequestRow>(conn, "SELECT * FROM quote_requests WHERE id = ? FOR UPDATE", [requestId]);
   if (!current) throw new ApiError("not_found", "Quote request not found.");
   if (!ALLOWED[current.status].includes(to)) {
@@ -291,10 +293,10 @@ async function applyStatusChange(conn: PoolConnection, env: ApiEnvironment, requ
   }
   await exec(conn, "INSERT INTO request_events (request_id, status, detail, occurred_at) VALUES (?, ?, ?, ?)", [requestId, to, message, now]);
   const [updated] = await rows<QuoteRequestRow>(conn, "SELECT * FROM quote_requests WHERE id = ?", [requestId]);
-  return enqueueWebhook(conn, env, updated, now);
+  return updated.source === "website" ? null : enqueueWebhook(conn, env, updated, now);
 }
 
-export async function changeStatus(pool: Pool, env: ApiEnvironment, requestId: string, to: RequestStatus, change: StatusChange = {}): Promise<string> {
+export async function changeStatus(pool: Pool, env: ApiEnvironment, requestId: string, to: RequestStatus, change: StatusChange = {}): Promise<string | null> {
   const quoteRelPath = change.quotePdf ? await putFile(env, requestId, change.quotePdf.filename, change.quotePdf.bytes) : null;
   try {
     return await withTx(pool, (conn) => applyStatusChange(conn, env, requestId, to, change, quoteRelPath, new Date()));
@@ -329,6 +331,7 @@ export async function addPartnerMessage(ctx: AuthContext, requestId: string, bod
         );
       }
       const deliveryId = await applyStatusChange(conn, env, requestId, "under_review", { message: null }, null, now);
+      if (!deliveryId) throw new ApiError("not_found", "Quote request not found.");
       const [updated] = await rows<QuoteRequestRow>(conn, "SELECT * FROM quote_requests WHERE id = ?", [requestId]);
       return { row: updated, deliveryId };
     });

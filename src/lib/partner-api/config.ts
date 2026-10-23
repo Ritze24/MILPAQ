@@ -1,6 +1,9 @@
 import { isAbsolute } from "node:path";
 import { termsVersion } from "../terms-content.ts";
 
+// Website RFQs are stored as requests from this built-in partner (it has no API key or webhook).
+export const WEBSITE_PARTNER_NAME = "MILPAQ Website";
+
 export type ApiEnvironment = "sandbox" | "live";
 export const ENVIRONMENTS: ApiEnvironment[] = ["sandbox", "live"];
 
