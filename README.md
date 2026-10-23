@@ -76,3 +76,16 @@ Before 2026-09-24 the forms were display-only and discarded submissions. Monday.
 
 - This project pins a newer Next.js version than may be reflected in general documentation/training data — see `AGENTS.md` for details, and check `node_modules/next/dist/docs/` for the installed version's docs before relying on prior Next.js knowledge.
 - Blog content is sourced from a headless WordPress instance (see `src/lib/wordpress.ts`). Posts can be filtered with `/blog?category=<slug>` or `/blog?tag=<slug>`; post tags link to the tag filter, and the share row's copy-link button is `src/components/copy-link-button.tsx`.
+
+## Partner API (Contrax AI) — branch `feat/partner-api`
+
+Server-to-server quote-request API for partners, built 2026-10-20. Spec: `partner-api/openapi.yaml`. Code: `src/lib/partner-api/`, routes under `src/app/api/v1/` and `src/app/api/internal/`, staff screen under `src/app/staff/`.
+
+- Endpoints: `POST /api/v1/quote-requests` (multipart: `metadata` JSON + `solicitation_pdf`, `Idempotency-Key`), `GET /api/v1/quote-requests/{id}`, `POST .../messages`, signed quote-PDF links, HMAC-SHA256 signed webhooks with retries.
+- Keys: `mpq_test_` keys use the sandbox database, `mpq_live_` the live one. Sandbox scenario is chosen by the solicitation number (contains INFO, DECLINE or CANCEL; otherwise completes with a stub quote).
+- Staff screen: `/staff/login` then `/staff/quotes` (review, enter quote + PDF, ask for info, decline, cancel). Shared password, not per-person.
+- Environment variables (set in hPanel, never in the repo): `PARTNER_DB_SANDBOX_URL`, `PARTNER_DB_LIVE_URL`, `PARTNER_STORAGE_DIR` (absolute, outside the build folder), `PARTNER_MASTER_KEY` (32 random bytes, base64), `PARTNER_CRON_SECRET`, `PARTNER_ADMIN_SECRET`, `PARTNER_STAFF_PASSWORD` (12+ chars).
+- Cron: POST `/api/internal/partner-cron` every minute (cron-job.org) with `Authorization: Bearer <PARTNER_CRON_SECRET>`.
+- Tests: `npm run test:partner-api`. The database test needs `PARTNER_TEST_DB_URL` pointing at a database whose name contains `sandbox` or `test`.
+- Status: SQL, file persistence across redeploys and live webhook delivery are not yet tested against real infrastructure. Stripe pay-to-proceed is undecided.
+- The packaging RFQ form now takes structured dimensions/weight and an optional solicitation number, and sends the terms version; the inbox email keeps the same field labels.
