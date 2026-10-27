@@ -1,7 +1,12 @@
+import type { PoolConnection } from "mysql2/promise";
+import { WEBSITE_PARTNER_NAME } from "./config.ts";
+
+export type MigrationStep = string | ((conn: PoolConnection) => Promise<void>);
+
 // Applied automatically (idempotent, under an advisory lock) the first time an
 // API call or the cron endpoint touches a database. All statements use
 // IF NOT EXISTS so a partially applied migration can simply be re-run.
-export const MIGRATIONS: { version: number; statements: string[] }[] = [
+export const MIGRATIONS: { version: number; statements: MigrationStep[] }[] = [
   {
     version: 1,
     statements: [
@@ -128,6 +133,28 @@ export const MIGRATIONS: { version: number; statements: string[] }[] = [
         hits INT UNSIGNED NOT NULL DEFAULT 0,
         PRIMARY KEY (key_id, kind, bucket)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`,
+    ],
+  },
+  {
+    // Website RFQs share the quote_requests table. `source` tells them apart from
+    // partner API requests; website rows never queue webhooks. ADD COLUMN has no
+    // IF NOT EXISTS on every MySQL version, so the check is done by hand.
+    version: 2,
+    statements: [
+      async (conn) => {
+        const [found] = await conn.query(
+          "SELECT COUNT(*) AS n FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'quote_requests' AND COLUMN_NAME = 'source'",
+        );
+        if (Number((found as { n: number }[])[0]?.n) === 0) {
+          await conn.query("ALTER TABLE quote_requests ADD COLUMN source VARCHAR(10) NOT NULL DEFAULT 'partner'");
+        }
+      },
+      async (conn) => {
+        const [found] = await conn.query("SELECT id FROM partners WHERE name = ? LIMIT 1", [WEBSITE_PARTNER_NAME]);
+        if ((found as unknown[]).length === 0) {
+          await conn.query("INSERT INTO partners (name, created_at) VALUES (?, ?)", [WEBSITE_PARTNER_NAME, new Date()]);
+        }
+      },
     ],
   },
 ];

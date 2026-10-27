@@ -70,6 +70,8 @@ Key routes: `/about`, `/services` (+ subpages for military packaging, DCMA origi
 
 All lead forms (contact, OEM partnership, strategic growth retainer, packaging RFQ with file upload, brochure download) POST to `src/app/api/forms/route.ts`, which emails them via SMTP (`src/lib/mailer.ts`) to **milpaq@305aerosupplies.com** only, with Reply-To set to the visitor. Includes a honeypot spam field and a 10 MB attachment limit. If SMTP isn't configured the API returns 503 and visitors are told to email directly — submissions are never silently dropped.
 
+The packaging RFQ form is also saved to the live database (`source = 'website'`, built-in partner "MILPAQ Website") so staff can work it in `/staff/quotes`. The email is sent first and the save happens after the response, so a database problem never fails a submission; failures are logged as `RFQ was emailed but not saved`. Website requests never queue webhooks, so staff actions on them are recorded only and the customer is replied to by email. This needs `PARTNER_DB_LIVE_URL` and `PARTNER_STORAGE_DIR`; without them the form still works and just emails.
+
 Before 2026-09-24 the forms were display-only and discarded submissions. Monday.com automation for the RFQ workflow is still pending.
 
 ## Notes

@@ -99,4 +99,23 @@ test("partner API against a real database", { skip: enabled ? false : "set PARTN
   await dispatchDue(pool, "sandbox"); // example.com will reject; must record a retry, not throw
   const [st] = await rows<{ status: string }>(pool, "SELECT status FROM webhook_deliveries WHERE partner_id = ? ORDER BY created_at LIMIT 1", [partnerId]);
   assert.ok(["delivered", "pending", "dead"].includes(st.status));
+
+  // website RFQ: saved as source 'website', no webhook queued, staff status change returns null
+  process.env.PARTNER_DB_LIVE_URL = url; // same guarded test database
+  const { parseWebsiteRfq } = await import("./website-rfq-parse.ts");
+  const { saveWebsiteRfq } = await import("./website-rfq.ts");
+  const f = new FormData();
+  for (const [k, v] of Object.entries({ companyName: "Web Co", contactName: "Wes", email: "wes@example.com", phone: "555", units: "10", dimensions: "8 x 4 x 2 in", weight: "3 lb", termsVersion: "t1" })) f.set(k, v);
+  const saved = await saveWebsiteRfq(parseWebsiteRfq(f), { filename: "contract.pdf", bytes: buildStubPdf("web") });
+  assert.ok(saved.saved, saved.saved ? "" : saved.reason);
+  if (saved.saved) {
+    const [web] = await rows<{ source: string; partner: string }>(pool, "SELECT q.source, p.name AS partner FROM quote_requests q JOIN partners p ON p.id = q.partner_id WHERE q.id = ?", [saved.requestId]);
+    assert.equal(web.source, "website");
+    assert.equal(web.partner, "MILPAQ Website");
+    const files = await rows<{ n: number }>(pool, "SELECT COUNT(*) AS n FROM request_files WHERE request_id = ?", [saved.requestId]);
+    assert.equal(Number(files[0].n), 1);
+    assert.equal(await changeStatus(pool, "live", saved.requestId, "under_review"), null);
+    const hooks = await rows<{ n: number }>(pool, "SELECT COUNT(*) AS n FROM webhook_deliveries WHERE request_id = ?", [saved.requestId]);
+    assert.equal(Number(hooks[0].n), 0);
+  }
 });

@@ -29,14 +29,16 @@ export async function moveRequest(formData: FormData) {
   if (!TARGETS.includes(to)) redirect(flash(back, "error", "Unknown action."));
   const message = String(formData.get("message") ?? "").trim().slice(0, 2000) || null;
   let failure: string | null = null;
+  let notice = "";
   try {
     const pool = await requirePool(env);
     const deliveryId = await changeStatus(pool, env, id, to, { message });
-    after(() => dispatchDelivery(pool, env, deliveryId));
+    if (deliveryId) after(() => dispatchDelivery(pool, env, deliveryId));
+    notice = deliveryId ? "Status updated and partner notified." : "Status updated. This is a website request, so the customer is not notified automatically.";
   } catch (err) {
     failure = reason(err);
   }
-  redirect(failure ? flash(back, "error", failure) : flash(back, "notice", "Status updated and partner notified."));
+  redirect(failure ? flash(back, "error", failure) : flash(back, "notice", notice));
 }
 
 export async function completeQuote(formData: FormData) {
@@ -45,15 +47,17 @@ export async function completeQuote(formData: FormData) {
   const parsed = await parseQuoteForm(formData);
   if (!parsed.ok) redirect(flash(back, "error", parsed.error));
   let failure: string | null = null;
+  let notice = "";
   try {
     const pool = await requirePool(env);
     const deliveryId = await changeStatus(pool, env, id, "quote_completed", {
       quote: parsed.quote,
       quotePdf: { bytes: parsed.pdf, filename: parsed.pdfName },
     });
-    after(() => dispatchDelivery(pool, env, deliveryId));
+    if (deliveryId) after(() => dispatchDelivery(pool, env, deliveryId));
+    notice = deliveryId ? "Quote sent to the partner." : "Quote saved. This is a website request: send the quote to the customer by email.";
   } catch (err) {
     failure = reason(err);
   }
-  redirect(failure ? flash(back, "error", failure) : flash(back, "notice", "Quote sent to the partner."));
+  redirect(failure ? flash(back, "error", failure) : flash(back, "notice", notice));
 }

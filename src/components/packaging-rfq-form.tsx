@@ -21,8 +21,9 @@ export function PackagingRfqForm() {
   const weightText = weight.value ? `${weight.value} ${weight.unit}` : "";
 
   // Submissions (including the uploaded contract) are emailed to the
-  // MILPAQ inboxes via /api/forms. Monday.com automation for Phase 1 is
-  // still pending — no CRM/job record is created here yet.
+  // MILPAQ inboxes via /api/forms, which also saves them to the staff queue
+  // (/staff/quotes) when the live database is configured. Monday.com
+  // automation for Phase 1 is still pending.
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmitting(true);

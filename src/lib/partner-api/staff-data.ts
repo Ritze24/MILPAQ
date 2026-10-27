@@ -6,17 +6,18 @@ export function configuredEnvironments(): ApiEnvironment[] {
   return ENVIRONMENTS.filter((e) => dbUrlFor(e));
 }
 
-export type ListItem = Pick<QuoteRequestRow, "id" | "status" | "company_name" | "solicitation_number" | "number_of_units" | "received_at" | "updated_at"> & { partner_name: string };
+export type ListItem = Pick<QuoteRequestRow, "id" | "status" | "source" | "company_name" | "solicitation_number" | "number_of_units" | "received_at" | "updated_at"> & { partner_name: string };
 
-export async function listRequests(env: ApiEnvironment, status: string | null): Promise<ListItem[]> {
+export async function listRequests(env: ApiEnvironment, status: string | null, source: "website" | "partner" | null = null): Promise<ListItem[]> {
   const pool = await requirePool(env);
-  const where = status ? "WHERE q.status = ?" : "";
+  const conditions = [status ? "q.status = ?" : "", source ? "q.source = ?" : ""].filter(Boolean);
+  const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
   return rows<ListItem>(
     pool,
-    `SELECT q.id, q.status, q.company_name, q.solicitation_number, q.number_of_units, q.received_at, q.updated_at, p.name AS partner_name
+    `SELECT q.id, q.status, q.source, q.company_name, q.solicitation_number, q.number_of_units, q.received_at, q.updated_at, p.name AS partner_name
      FROM quote_requests q JOIN partners p ON p.id = q.partner_id ${where}
      ORDER BY (q.status IN ('received','under_review')) DESC, q.received_at DESC LIMIT 200`,
-    status ? [status] : [],
+    [...(status ? [status] : []), ...(source ? [source] : [])],
   );
 }
 
